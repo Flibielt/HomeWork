@@ -50,6 +50,7 @@ public class Game {
             System.out.println("Current: (" + game.gameState.getRow() + ", " + game.gameState.getCol() + ")");
             game.table.writeOut();
 
+            //For console use
             System.out.print("Direction: ");
             String direction = System.console().readLine();
             game.step(direction);
