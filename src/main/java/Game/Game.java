@@ -3,32 +3,35 @@ package Game;
 /**
  * Manages the game itself
  */
-public class Game {
+class Game {
     private Table table;
     private GameState gameState;
+    private int current[];
 
     /**
      * Gives the score of the field
-     * @return the score of the current field
+     * @param row is between 0 and 8
+     * @param col is between 0 and 8
+     * @return the score of the given field
      */
-    private int getField() {
-        return table.getField(gameState.getRow(), gameState.getCol());
+    public int getField(int row, int col) {
+        return table.getField(row, col);
     }
 
     /**
      * Returns true if the current field is the goal
      * @return true or false
      */
-    private boolean isGoal(){
-        return getField() == 0;
+    public boolean isGoal(){
+        return getField(current[0], current[1]) == 0;
     }
 
     /**
      * Steps the player into a specific direction
      * @param direction is where the player steps
      */
-    private void step(String direction){
-        int distance = getField();
+    public void step(String direction){
+        int distance = getField(current[0], current[1]);
         if (!gameState.getPreviousField().equals(direction)) {
             try {
                 gameState.updateState(direction, distance);
@@ -38,23 +41,12 @@ public class Game {
         }
     }
 
-    private Game(){
+    public Game() {
         table = new Table();
         gameState = new GameState();
+        current = new int[2];
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
 
-        while (!game.isGoal()){
-            System.out.println("Current: (" + game.gameState.getRow() + ", " + game.gameState.getCol() + ")");
-            game.table.writeOut();
-
-            //For console use
-            System.out.print("Direction: ");
-            String direction = System.console().readLine();
-            game.step(direction);
-        }
-    }
 }
 
