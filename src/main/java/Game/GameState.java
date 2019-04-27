@@ -41,17 +41,27 @@ class GameState {
     /**
      * Modifies the current row
      * @param distance the added score
+     * @return true if successful
      */
-    private void setRow(int distance){
-        index[0] += distance;
+    private boolean setRow(int distance){
+        if (index[0] + distance < 8 && index[0] + distance >= 0) {
+            index[0] += distance;
+            return true;
+        }
+        return false;
     }
 
     /**
      * Modifies the current column
      * @param distance the added score
+     * @return true if successful
      */
-    private void setCol(int distance){
-        index[1] += distance;
+    private boolean setCol(int distance){
+        if (index[1] + distance < 8 && index[1] + distance >= 0) {
+            index[1] += distance;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -70,20 +80,24 @@ class GameState {
     void updateState(String previous, int distance) {
         switch (previous.toUpperCase()) {
             case "UP":
-                setRow(-distance);
-                previousField = direction.DOWN;
+                if (setRow(-distance)) {
+                    previousField = direction.DOWN;
+                }
                 break;
             case "DOWN":
-                setRow(distance);
-                previousField = direction.UP;
+                if (setRow(distance)) {
+                    previousField = direction.UP;
+                }
                 break;
             case "LEFT":
-                setCol(-distance);
-                previousField = direction.RIGHT;
+                if (setCol(-distance)) {
+                    previousField = direction.RIGHT;
+                }
                 break;
             case "RIGHT":
-                setCol(distance);
-                previousField = direction.LEFT;
+                if (setCol(distance)) {
+                    previousField = direction.LEFT;
+                }
                 break;
         }
     }

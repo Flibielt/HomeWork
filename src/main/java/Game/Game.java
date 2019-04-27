@@ -6,7 +6,7 @@ package Game;
 class Game {
     private Table table;
     private GameState gameState;
-    private int current[];
+    private int[] current;
 
     /**
      * Gives the score of the field
@@ -14,8 +14,24 @@ class Game {
      * @param col is between 0 and 8
      * @return the score of the given field
      */
-    public int getField(int row, int col) {
+    int getField(int row, int col) {
         return table.getField(row, col);
+    }
+
+    /**
+     * Returns the current row
+     * @return the current row
+     */
+    int getCurrentRow() {
+        return gameState.getRow();
+    }
+
+    /**
+     * Returns the current column
+     * @return the current column
+     */
+    int getCurrentCol() {
+        return gameState.getCol();
     }
 
     /**
@@ -30,9 +46,9 @@ class Game {
      * Steps the player into a specific direction
      * @param direction is where the player steps
      */
-    public void step(String direction){
-        int distance = getField(current[0], current[1]);
-        if (!gameState.getPreviousField().equals(direction)) {
+    void step(String direction) {
+        int distance = getField(getCurrentRow(), getCurrentCol());
+        if (!gameState.getPreviousField().equalsIgnoreCase(direction)) {
             try {
                 gameState.updateState(direction, distance);
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -41,7 +57,13 @@ class Game {
         }
     }
 
-    public Game() {
+    void loadGame() {
+        gameState.loadState();
+        current[0] = gameState.getRow();
+        current[1] = gameState.getCol();
+    }
+
+    Game() {
         table = new Table();
         gameState = new GameState();
         current = new int[2];
