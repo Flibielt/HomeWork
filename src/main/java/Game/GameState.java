@@ -126,6 +126,7 @@ class GameState {
 
             jsonWriter.endObject();
             jsonWriter.close();
+            System.out.println("State saved");
 
         } catch (IOException e) {
             System.out.println("IOException error");
@@ -141,7 +142,7 @@ class GameState {
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-            JsonReader jsonReader = new JsonReader(new FileReader(classLoader.getResource("table.json").getPath()));
+            JsonReader jsonReader = new JsonReader(new FileReader(classLoader.getResource("state.json").getPath()));
 
             jsonReader.beginObject();
             jsonReader.nextName();

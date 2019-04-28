@@ -63,6 +63,14 @@ class Game {
         current[1] = gameState.getCol();
     }
 
+    void saveGame() {
+        gameState.saveState();
+    }
+
+    boolean saved() {
+        return getCurrentRow() == gameState.getRow() && getCurrentCol() == gameState.getCol();
+    }
+
     Game() {
         table = new Table();
         gameState = new GameState();
