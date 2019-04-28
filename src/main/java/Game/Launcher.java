@@ -5,12 +5,9 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -47,7 +44,9 @@ public class Launcher extends Application {
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                newGame(startStage);
+                //newGame(startStage);
+                newGameLoader();
+                startStage.close();
             }
         });
 
@@ -55,7 +54,12 @@ public class Launcher extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 game.loadGame();
-                newGame(startStage);
+                if (game.getName().equals("")) {
+                    newGameLoader();
+                    startStage.close();
+                } else {
+                    newGame(startStage);
+                }
             }
         });
 
@@ -64,7 +68,7 @@ public class Launcher extends Application {
         newGameButton.setTranslateY(-25);
         loadGameButton.setTranslateY(25);
 
-        startStage.setScene(new Scene(stackPane, 400, 400));
+        startStage.setScene(new Scene(stackPane, 400, 200));
         startStage.show();
 
     }
@@ -83,10 +87,39 @@ public class Launcher extends Application {
         hBox.getChildren().add(text1);
         hBox.setStyle("-fx-background-color: white;" +
                         " -fx-border-color: red;" +
-                        " -fx-border-width: 5px;"
+                        " -fx-border-width: 5px;" +
+                        "-fx-padding: 3px;"
         );
         hBox.setMaxSize(text1.getScaleX(), text1.getScaleY());
         return hBox;
+    }
+
+    private void newGameLoader() {
+        Stage gameLoader = new Stage();
+        gameLoader.setTitle("New game");
+        HBox hBox = new HBox();
+        Text nameText = new Text("Name:");
+        TextField textField = new TextField();
+        hBox.getChildren().addAll(nameText, textField);
+        hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER);
+        VBox vBox = new VBox();
+
+        Button newGameButton = new Button("New game");
+        newGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (!textField.getText().equals("")) {
+                    game.setName(textField.getText());
+                    newGame(gameLoader);
+                }
+            }
+        });
+        vBox.getChildren().addAll(hBox, newGameButton);
+        vBox.setSpacing(10);
+        vBox.setAlignment(Pos.CENTER);
+        gameLoader.setScene(new Scene(vBox, 400, 200));
+        gameLoader.show();
     }
 
     /**
@@ -120,7 +153,7 @@ public class Launcher extends Application {
         Button exitButton = new Button("Exit");
         Button saveExitButton = new Button("Save and exit");
         Button cancelButton = new Button("Cancel");
-        hBox.getChildren().addAll(exitButton, cancelButton);
+        hBox.getChildren().addAll(exitButton, cancelButton, saveExitButton);
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(10);
 
@@ -129,9 +162,6 @@ public class Launcher extends Application {
         exitStage.setScene(new Scene(hBox, 400, 100));
         exitStage.show();
 
-        if (game.saved()) {
-            hBox.getChildren().add(saveExitButton);
-        }
         exitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -225,7 +255,7 @@ public class Launcher extends Application {
 
 
         stackPane.getChildren().add(menuBar);
-        menuBar.setTranslateY(-290);
+        menuBar.setTranslateY(-240);
 
 
         for (int i = 0; i < 8; i++) {
@@ -258,15 +288,24 @@ public class Launcher extends Application {
 
 
         Scene gameScene = new Scene(stackPane, 500, 500);
+        Text steps = new Text("Steps: " + game.getSteps());
+        stackPane.getChildren().add(steps);
+        steps.setTranslateX(-240);
+        steps.setTranslateY(240);
 
         gameScene.heightProperty().addListener((obs, oldVal, newVal) -> {
             menuBar.setTranslateY(-gameScene.getHeight()/2+10);
+            steps.setTranslateX(-gameScene.getHeight()/2+40);
+            steps.setTranslateY(gameScene.getWidth()/2-20);
         });
 
         rectangles[game.getCurrentRow()][game.getCurrentCol()].setFill(Color.CORNFLOWERBLUE);
 
         FadeTransition fadeOut = transitionInitialize(1.0, 0.0);
         fadeOut.setNode(illegalStepHBox);
+
+
+
 
         gameScene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             int[] previous = new int[2];
@@ -295,9 +334,10 @@ public class Launcher extends Application {
                         fadeOut.playFromStart();
                     }
                 }
+
+                steps.setText("Steps: " + game.getSteps());
             }
         });
-
 
         gameStage.setScene(gameScene);
         gameStage.show();

@@ -13,6 +13,8 @@ import java.io.IOException;
 class GameState {
     private int[] index;
     private direction previousField;
+    private String name;
+    private int steps;
 
     enum direction {
         LEFT,
@@ -24,6 +26,7 @@ class GameState {
     GameState(){
         index = new int[2];
         previousField = direction.LEFT;
+        steps = 0;
     }
 
     /**
@@ -37,6 +40,14 @@ class GameState {
      * @return the current column
      */
     int getCol(){return index[1];}
+
+    String getName() {
+        return name;
+    }
+
+    int getSteps() {
+        return steps;
+    }
 
     /**
      * Modifies the current row
@@ -82,21 +93,25 @@ class GameState {
             case "UP":
                 if (setRow(-distance)) {
                     previousField = direction.DOWN;
+                    steps++;
                 }
                 break;
             case "DOWN":
                 if (setRow(distance)) {
                     previousField = direction.UP;
+                    steps++;
                 }
                 break;
             case "LEFT":
                 if (setCol(-distance)) {
                     previousField = direction.RIGHT;
+                    steps++;
                 }
                 break;
             case "RIGHT":
                 if (setCol(distance)) {
                     previousField = direction.LEFT;
+                    steps++;
                 }
                 break;
         }
@@ -123,6 +138,12 @@ class GameState {
 
             jsonWriter.name("previousField");
             jsonWriter.value(previousField.toString());
+
+            jsonWriter.name("name");
+            jsonWriter.value(name);
+
+            jsonWriter.name("steps");
+            jsonWriter.value(steps);
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -168,12 +189,24 @@ class GameState {
                     break;
             }
 
+            jsonReader.nextName();
+            name = jsonReader.nextString();
+
+            jsonReader.nextName();
+            steps = jsonReader.nextInt();
+
             jsonReader.endObject();
             jsonReader.close();
         } catch (IOException e) {
             System.out.println("IOException error");
         } catch (NullPointerException e) {
             System.out.println("Null Pointer Exception error");
+        }
+
+        if (name.equals("")) {
+            index[0] = index[1] = 0;
+            previousField = direction.LEFT;
+            steps = 0;
         }
     }
 }

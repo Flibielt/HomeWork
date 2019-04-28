@@ -1,4 +1,6 @@
 {
   "index": [5, 5],
-  "previousFiled": "LEFT"
+  "previousFiled": "LEFT",
+  "name": "",
+  "steps": 15
 }

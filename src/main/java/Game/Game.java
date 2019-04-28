@@ -6,6 +6,8 @@ package Game;
 class Game {
     private Table table;
     private GameState gameState;
+    private Leaderboard leaderboard;
+    private String name;
     private int[] current;
 
     /**
@@ -42,6 +44,11 @@ class Game {
         return getField(current[0], current[1]) == 0;
     }
 
+    public void updateLeaderboard() {
+        leaderboard.newPlayer(name, gameState.getSteps());
+        leaderboard.update();
+    }
+
     /**
      * Steps the player into a specific direction
      * @param direction is where the player steps
@@ -61,20 +68,32 @@ class Game {
         gameState.loadState();
         current[0] = gameState.getRow();
         current[1] = gameState.getCol();
+        name = gameState.getName();
+
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    String getName() {
+        return name;
     }
 
     void saveGame() {
         gameState.saveState();
     }
 
-    boolean saved() {
-        return getCurrentRow() == gameState.getRow() && getCurrentCol() == gameState.getCol();
+    int getSteps() {
+        return gameState.getSteps();
     }
 
     Game() {
         table = new Table();
         gameState = new GameState();
+        leaderboard = new Leaderboard();
         current = new int[2];
+        name = "";
     }
 
 
