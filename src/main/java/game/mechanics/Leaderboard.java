@@ -1,4 +1,4 @@
-package Game;
+package game.mechanics;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -74,7 +74,7 @@ class Leaderboard {
         }
     }
 
-    public void update() {
+    void update() {
         try {
 
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -98,6 +98,14 @@ class Leaderboard {
             System.out.println("IO error");
         } catch (NullPointerException e) {
             System.out.println("Null error");
+        }
+    }
+
+    Player getPlayer(int position) {
+        try {
+            return leaderboard.get(position);
+        } catch (NullPointerException e) {
+            return null;
         }
     }
 }
@@ -151,4 +159,6 @@ class Player {
         Player player = (Player) o;
         return steps < player.getSteps();
     }
+
+
 }

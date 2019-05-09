@@ -1,4 +1,4 @@
-package Game;
+package game.mechanics;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;

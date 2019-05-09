@@ -1,9 +1,9 @@
-package Game;
+package game.mechanics;
 
 /**
  * Manages the game itself
  */
-class Game {
+public class Game {
     private Table table;
     private GameState gameState;
     private Leaderboard leaderboard;
@@ -16,7 +16,7 @@ class Game {
      * @param col is between 0 and 8
      * @return the score of the given field
      */
-    int getField(int row, int col) {
+    public int getField(int row, int col) {
         return table.getField(row, col);
     }
 
@@ -24,7 +24,7 @@ class Game {
      * Returns the current row
      * @return the current row
      */
-    int getCurrentRow() {
+    public int getCurrentRow() {
         return gameState.getRow();
     }
 
@@ -32,7 +32,7 @@ class Game {
      * Returns the current column
      * @return the current column
      */
-    int getCurrentCol() {
+    public int getCurrentCol() {
         return gameState.getCol();
     }
 
@@ -53,7 +53,7 @@ class Game {
      * Steps the player into a specific direction
      * @param direction is where the player steps
      */
-    void step(String direction) {
+    public void step(String direction) {
         int distance = getField(getCurrentRow(), getCurrentCol());
         if (!gameState.getPreviousField().equalsIgnoreCase(direction)) {
             try {
@@ -64,7 +64,7 @@ class Game {
         }
     }
 
-    void loadGame() {
+    public void loadGame() {
         gameState.loadState();
         current[0] = gameState.getRow();
         current[1] = gameState.getCol();
@@ -72,23 +72,26 @@ class Game {
 
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void saveGame() {
+    public void saveGame() {
         gameState.saveState();
     }
 
-    int getSteps() {
+    public int getSteps() {
         return gameState.getSteps();
     }
 
-    Game() {
+
+
+
+    public Game() {
         table = new Table();
         gameState = new GameState();
         leaderboard = new Leaderboard();

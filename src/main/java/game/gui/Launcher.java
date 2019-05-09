@@ -1,5 +1,6 @@
-package Game;
+package game.gui;
 
+import game.mechanics.Game;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,7 +32,7 @@ public class Launcher extends Application {
     public void start(Stage startStage) {
         game = new Game();
         StackPane stackPane = new StackPane();
-        startStage.setTitle("Game");
+        startStage.setTitle("game");
 
 
         Button newGameButton = new Button();
@@ -96,7 +97,7 @@ public class Launcher extends Application {
 
     private void newGameLoader() {
         Stage gameLoader = new Stage();
-        gameLoader.setTitle("New game");
+        gameLoader.setTitle("game");
         HBox hBox = new HBox();
         Text nameText = new Text("Name:");
         TextField textField = new TextField();
@@ -192,7 +193,7 @@ public class Launcher extends Application {
      */
     private void helpWindow() {
         Stage helpStage = new Stage();
-        helpStage.setTitle("Help window");
+        helpStage.setTitle("Help");
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         Text movetext = new Text("You can move with the arrows or with the WASD buttons");
@@ -226,7 +227,7 @@ public class Launcher extends Application {
         MenuBar menuBar = new MenuBar();
 
 
-        Menu menu1 = new Menu("Game");
+        Menu menu1 = new Menu("game");
         MenuItem saveGame = new MenuItem("Save game");
         menu1.getItems().add(saveGame);
         MenuItem exitGame = new MenuItem("Exit game");
