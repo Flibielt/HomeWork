@@ -53,9 +53,9 @@ public class Game {
      * Steps the player into a specific direction
      * @param direction is where the player steps
      */
-    public void step(String direction) {
+    public void step(Direction direction) {
         int distance = getField(getCurrentRow(), getCurrentCol());
-        if (!gameState.getPreviousField().equalsIgnoreCase(direction)) {
+        if (!gameState.getUnallowedDirection().equals(direction)) {
             try {
                 gameState.updateState(direction, distance);
             } catch (ArrayIndexOutOfBoundsException e) {

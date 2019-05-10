@@ -12,20 +12,13 @@ import java.io.IOException;
  */
 class GameState {
     private int[] index;
-    private direction previousField;
+    private Direction unallowedDirection;
     private String name;
     private int steps;
 
-    enum direction {
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN
-    }
-
     GameState(){
         index = new int[2];
-        previousField = direction.LEFT;
+        unallowedDirection = Direction.LEFT;
         steps = 0;
     }
 
@@ -79,8 +72,8 @@ class GameState {
      * Gives the direction of the previous field
      * @return the opposite direction of the previous step
      */
-    String getPreviousField() {
-        return previousField.toString();
+    Direction getUnallowedDirection() {
+        return unallowedDirection;
     }
 
     /**
@@ -88,29 +81,29 @@ class GameState {
      * @param previous the direction of the step
      * @param distance the length of the step
      */
-    void updateState(String previous, int distance) {
-        switch (previous.toUpperCase()) {
-            case "UP":
+    void updateState(Direction previous, int distance) {
+        switch (previous) {
+            case UP:
                 if (setRow(-distance)) {
-                    previousField = direction.DOWN;
+                    unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
                 }
                 break;
-            case "DOWN":
+            case DOWN:
                 if (setRow(distance)) {
-                    previousField = direction.UP;
+                    unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
                 }
                 break;
-            case "LEFT":
+            case LEFT:
                 if (setCol(-distance)) {
-                    previousField = direction.RIGHT;
+                    unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
                 }
                 break;
-            case "RIGHT":
+            case RIGHT:
                 if (setCol(distance)) {
-                    previousField = direction.LEFT;
+                    unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
                 }
                 break;
@@ -136,8 +129,8 @@ class GameState {
             }
             jsonWriter.endArray();
 
-            jsonWriter.name("previousField");
-            jsonWriter.value(previousField.toString());
+            jsonWriter.name("unallowedDirection");
+            jsonWriter.value(unallowedDirection.toString());
 
             jsonWriter.name("name");
             jsonWriter.value(name);
@@ -174,20 +167,8 @@ class GameState {
             jsonReader.endArray();
 
             jsonReader.nextName();
-            switch (jsonReader.nextString()) {
-                case "UP":
-                    previousField = direction.UP;
-                    break;
-                case "DOWN":
-                    previousField = direction.DOWN;
-                    break;
-                case "LEFT":
-                    previousField = direction.LEFT;
-                    break;
-                case "RIGHT":
-                    previousField = direction.RIGHT;
-                    break;
-            }
+
+            unallowedDirection = Direction.StringToEnum(jsonReader.nextString());
 
             jsonReader.nextName();
             name = jsonReader.nextString();
@@ -205,7 +186,7 @@ class GameState {
 
         if (name.equals("")) {
             index[0] = index[1] = 0;
-            previousField = direction.LEFT;
+            unallowedDirection = Direction.LEFT;
             steps = 0;
         }
     }
