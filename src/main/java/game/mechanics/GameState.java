@@ -52,27 +52,29 @@ class GameState {
     /**
      * Modifies the current row
      * @param distance the added score
-     * @return true if successful
+     * @param direction the direction of the step
      */
-    private boolean setRow(int distance){
+    private void setRow(int distance, Direction direction){
         if (index[0] + distance < 8 && index[0] + distance >= 0) {
             index[0] += distance;
-            return true;
+            unallowedDirection = Direction.GetOppositeDirection(direction);
+            steps++;
+            logStep(direction);
         }
-        return false;
     }
 
     /**
      * Modifies the current column
      * @param distance the added score
-     * @return true if successful
+     * @param direction the direction of the step
      */
-    private boolean setCol(int distance){
+    private void setCol(int distance, Direction direction){
         if (index[1] + distance < 8 && index[1] + distance >= 0) {
             index[1] += distance;
-            return true;
+            unallowedDirection = Direction.GetOppositeDirection(direction);
+            steps++;
+            logStep(direction);
         }
-        return false;
     }
 
     /**
@@ -85,38 +87,22 @@ class GameState {
 
     /**
      * Updates the game state
-     * @param previous the direction of the step
+     * @param direction the direction of the step
      * @param distance the length of the step
      */
-    void updateState(Direction previous, int distance) {
-        switch (previous) {
+    void updateState(Direction direction, int distance) {
+        switch (direction) {
             case UP:
-                if (setRow(-distance)) {
-                    unallowedDirection = Direction.GetOppositeDirection(previous);
-                    steps++;
-                    logStep(previous);
-                }
+                setRow(-distance, direction);
                 break;
             case DOWN:
-                if (setRow(distance)) {
-                    unallowedDirection = Direction.GetOppositeDirection(previous);
-                    steps++;
-                    logStep(previous);
-                }
+                setRow(distance, direction);
                 break;
             case LEFT:
-                if (setCol(-distance)) {
-                    unallowedDirection = Direction.GetOppositeDirection(previous);
-                    steps++;
-                    logStep(previous);
-                }
+                setCol(-distance, direction);
                 break;
             case RIGHT:
-                if (setCol(distance)) {
-                    unallowedDirection = Direction.GetOppositeDirection(previous);
-                    steps++;
-                    logStep(previous);
-                }
+                setCol(distance, direction);
                 break;
         }
     }
