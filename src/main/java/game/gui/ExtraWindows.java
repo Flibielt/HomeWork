@@ -60,7 +60,7 @@ public class ExtraWindows {
         exitStage.setScene(new Scene(hBox, 400, 100));
         exitStage.show();
 
-        log.info("Player wants to exit");
+        log.info("PlayerFromLeaderboard wants to exit");
 
         exitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

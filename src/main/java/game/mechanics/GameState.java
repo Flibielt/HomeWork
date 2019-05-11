@@ -19,8 +19,8 @@ class GameState {
     private int steps;
 
     private void logStep(Direction direction) {
-        log.info("Player's position: ({}, {})", index[0], index[1]);
-        log.info("Player stepped to {}", direction);
+        log.info("PlayerFromLeaderboard's position: ({}, {})", index[0], index[1]);
+        log.info("PlayerFromLeaderboard stepped to {}", direction);
     }
 
     GameState(){

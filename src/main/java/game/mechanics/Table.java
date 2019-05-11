@@ -54,14 +54,8 @@ class Table {
                 }
             }
             jsonReader.close();
-        } catch (FileNotFoundException e){
-            log.error("{}, File not found", e.toString());
-            uploadDefaultTable();
-        } catch (NullPointerException e){
-            log.error("{}, Null pointer exception", e.toString());
-            uploadDefaultTable();
-        } catch (IOException e){
-            log.error("{}, IOException error", e.toString());
+        } catch (Exception e){
+            log.error(e.toString());
             uploadDefaultTable();
         }
     }

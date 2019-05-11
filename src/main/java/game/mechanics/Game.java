@@ -52,6 +52,14 @@ public class Game {
         leaderboard.update();
     }
 
+    public PlayerFromLeaderboard getPlayerFromLeaderboard(int index) {
+        return leaderboard.getPlayer(index);
+    }
+
+    public int getLeaderboardSize() {
+        return leaderboard.getLeaderboardSize();
+    }
+
     /**
      * Steps the player into a specific direction
      * @param direction is where the player steps
@@ -62,7 +70,7 @@ public class Game {
             try {
                 gameState.updateState(direction, distance);
             } catch (ArrayIndexOutOfBoundsException e) {
-                log.error("{}, Array index out of bounds", e.toString());
+                log.error(e.toString());
             }
         }
     }
@@ -91,9 +99,6 @@ public class Game {
         return gameState.getSteps();
     }
 
-
-
-
     public Game() {
         table = new Table();
         gameState = new GameState();
@@ -101,7 +106,6 @@ public class Game {
         current = new int[2];
         name = "";
     }
-
 
 }
 

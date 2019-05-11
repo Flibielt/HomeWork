@@ -1,6 +1,7 @@
 package game.main;
 
 import game.gui.GameLoader;
+import game.gui.LeaderboardWindow;
 import game.mechanics.Game;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -31,10 +32,12 @@ public class MyApplication extends Application {
 
         Button newGameButton = new Button();
         Button loadGameButton = new Button();
-        vBox.getChildren().addAll(newGameButton, loadGameButton);
+        Button leaderboardButton = new Button();
+        vBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
 
         newGameButton.setText("START NEW GAME");
         loadGameButton.setText("LOAD GAME");
+        leaderboardButton.setText("SHOW LEADERBOARD");
 
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -54,6 +57,13 @@ public class MyApplication extends Application {
                     log.info("Load saved game");
                     gameLoader.LoadPreviousGame(game, primaryStage);
                 }
+            }
+        });
+
+        leaderboardButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                LeaderboardWindow.showLeaderboard(game);
             }
         });
 

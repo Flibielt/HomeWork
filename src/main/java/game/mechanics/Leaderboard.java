@@ -3,18 +3,19 @@ package game.mechanics;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.LinkedList;
 
+@Slf4j
 class Leaderboard {
 
-    private LinkedList<Player> leaderboard;
+    private LinkedList<PlayerFromLeaderboard> leaderboard;
 
     Leaderboard() {
-        leaderboard = new LinkedList<Player>();
+        leaderboard = new LinkedList<PlayerFromLeaderboard>();
         upload();
     }
 
@@ -23,7 +24,7 @@ class Leaderboard {
      */
     private void upload() {
         String name = "";
-        int steps;
+        int steps = 0;
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
@@ -33,7 +34,7 @@ class Leaderboard {
             jsonReader.nextName();
             jsonReader.beginArray();
 
-            while (jsonReader.peek() == JsonToken.END_DOCUMENT) {
+            while (jsonReader.peek() != JsonToken.END_DOCUMENT) {
                 if (jsonReader.peek() == JsonToken.END_ARRAY) {
                     jsonReader.endArray();
                 } else if (jsonReader.peek() == JsonToken.BEGIN_ARRAY) {
@@ -49,8 +50,8 @@ class Leaderboard {
             }
 
             jsonReader.close();
-        } catch (IOException e) {
-            System.out.println("IO error");
+        } catch (Exception e) {
+            log.error(e.toString());
         }
     }
 
@@ -60,16 +61,26 @@ class Leaderboard {
      * @param steps the steps the player did to reach the goal
      */
     void newPlayer(String name, int steps) {
-        Player player = new Player(name, steps);
+        PlayerFromLeaderboard playerFromLeaderboard = new PlayerFromLeaderboard(name, steps);
+        boolean added = false;
         for (int i = 0; i < leaderboard.size(); i++) {
-            if (!leaderboard.get(i).equals(player)) {
-                if (leaderboard.get(i).isBetterThan(player)) {
-                    leaderboard.add(i, player);
-                }
+            if (!leaderboard.get(i).isBetterThan(playerFromLeaderboard)) {
+                leaderboard.add(i, playerFromLeaderboard);
+                added = true;
+                break;
             }
         }
+        if (!added) {
+            leaderboard.addLast(playerFromLeaderboard);
+        }
 
-        while (leaderboard.size() > 9) {
+        try {
+            leaderboard.getFirst();
+        } catch (Exception e) {
+            leaderboard.addFirst(playerFromLeaderboard);
+        }
+
+        while (leaderboard.size() > 10) {
             leaderboard.remove(10);
         }
     }
@@ -84,81 +95,33 @@ class Leaderboard {
             jsonWriter.beginObject();
             jsonWriter.name("players");
             jsonWriter.beginArray();
-            for (Player player : leaderboard) {
+            for (PlayerFromLeaderboard playerFromLeaderboard : leaderboard) {
                 jsonWriter.beginArray();
-                jsonWriter.value(player.getName());
-                jsonWriter.value(player.getSteps());
+                jsonWriter.value(playerFromLeaderboard.getName());
+                jsonWriter.value(playerFromLeaderboard.getSteps());
                 jsonWriter.endArray();
             }
             jsonWriter.endArray();
             jsonWriter.endObject();
 
             jsonWriter.close();
-        } catch (IOException e) {
-            System.out.println("IO error");
-        } catch (NullPointerException e) {
-            System.out.println("Null error");
+        } catch (Exception e) {
+            log.error(e.toString());
         }
+
     }
 
-    Player getPlayer(int position) {
+    public PlayerFromLeaderboard getPlayer(int position) {
         try {
             return leaderboard.get(position);
-        } catch (NullPointerException e) {
-            return null;
+        } catch (Exception e) {
+            log.error(e.toString());
+            throw new IllegalArgumentException();
         }
+    }
+
+    int getLeaderboardSize() {
+        return leaderboard.size();
     }
 }
 
-class Player {
-    private String name;
-    private int steps;
-
-    Player(String name, int steps) {
-        this.name = name;
-        this.steps = steps;
-    }
-
-    /**
-     * Returns the player's name
-     * @return the player's name
-     */
-    String getName() {
-        return name;
-    }
-
-    /**
-     * Returns the player's steps
-     * @return the steps
-     */
-    int getSteps() {
-        return steps;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Player)) {
-            return false;
-        }
-
-        Player player = (Player) o;
-
-        return name.equals(player.getName()) && steps == player.steps;
-    }
-
-    /**
-     * Returns if the current player made the game with fewer steps
-     * @param o the other player
-     * @return true or false
-     */
-    boolean isBetterThan(Object o) {
-        if (!(o instanceof Player)) {
-            return false;
-        }
-
-        Player player = (Player) o;
-        return steps < player.getSteps();
-    }
-
-
-}

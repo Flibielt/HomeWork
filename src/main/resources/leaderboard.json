@@ -1,3 +1,15 @@
 {
-  "players": []
+  "players": [
+    ["Norbi", 305],
+    ["Samu", 401],
+    ["Norbi", 505],
+    ["Samu", 601],
+    ["Norbi", 705],
+    ["Samu", 101],
+    ["Norbi", 205],
+    ["Samu", 102],
+    ["Norbi", 206],
+    ["Samu", 201],
+    ["Eh", 104]
+  ]
 }
