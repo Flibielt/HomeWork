@@ -2,6 +2,7 @@ package game.mechanics;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,11 +11,17 @@ import java.io.IOException;
 /**
  * Manages the game state
  */
+@Slf4j
 class GameState {
     private int[] index;
     private Direction unallowedDirection;
     private String name;
     private int steps;
+
+    private void logStep(Direction direction) {
+        log.info("Player's position: ({}, {})", index[0], index[1]);
+        log.info("Player stepped to {}", direction);
+    }
 
     GameState(){
         index = new int[2];
@@ -87,24 +94,28 @@ class GameState {
                 if (setRow(-distance)) {
                     unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
+                    logStep(previous);
                 }
                 break;
             case DOWN:
                 if (setRow(distance)) {
                     unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
+                    logStep(previous);
                 }
                 break;
             case LEFT:
                 if (setCol(-distance)) {
                     unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
+                    logStep(previous);
                 }
                 break;
             case RIGHT:
                 if (setCol(distance)) {
                     unallowedDirection = Direction.GetOppositeDirection(previous);
                     steps++;
+                    logStep(previous);
                 }
                 break;
         }
@@ -140,12 +151,12 @@ class GameState {
 
             jsonWriter.endObject();
             jsonWriter.close();
-            System.out.println("State saved");
+            log.info("State saved");
 
         } catch (IOException e) {
-            System.out.println("IOException error");
+            log.error("{}, IOException error", e.toString());
         } catch (NullPointerException e) {
-            System.out.println("Null Pointer Exception");
+            log.error("{}, Null Pointer Exception", e.toString());
         }
     }
 
@@ -178,16 +189,20 @@ class GameState {
 
             jsonReader.endObject();
             jsonReader.close();
-        } catch (IOException e) {
-            System.out.println("IOException error");
-        } catch (NullPointerException e) {
-            System.out.println("Null Pointer Exception error");
+        } catch (Exception e) {
+            loadDefaultGameState();
+            log.error(e.toString());
         }
 
         if (name.equals("")) {
-            index[0] = index[1] = 0;
-            unallowedDirection = Direction.LEFT;
-            steps = 0;
+            loadDefaultGameState();
         }
+    }
+
+    private void loadDefaultGameState() {
+        name = "";
+        index[0] = index[1] = 0;
+        unallowedDirection = Direction.LEFT;
+        steps = 0;
     }
 }

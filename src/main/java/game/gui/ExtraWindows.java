@@ -11,7 +11,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ExtraWindows {
 
     /**
@@ -58,9 +60,12 @@ public class ExtraWindows {
         exitStage.setScene(new Scene(hBox, 400, 100));
         exitStage.show();
 
+        log.info("Player wants to exit");
+
         exitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                log.info("Exit game without save");
                 Platform.exit();
             }
         });
@@ -69,6 +74,7 @@ public class ExtraWindows {
             @Override
             public void handle(ActionEvent actionEvent) {
                 game.saveGame();
+                log.info("Exit game");
                 Platform.exit();
             }
         });
@@ -76,10 +82,10 @@ public class ExtraWindows {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                log.info("Return to game");
                 exitStage.close();
             }
         });
-
 
     }
 }

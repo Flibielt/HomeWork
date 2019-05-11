@@ -14,9 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import lombok.extern.slf4j.Slf4j;
 
 import static game.gui.GraphicElements.*;
 
+@Slf4j
 public class GameWindow {
 
     public static void ShowGameWindow(Game game, Stage primaryStage) {
@@ -78,6 +80,7 @@ public class GameWindow {
                     if (previous[0] == game.getCurrentRow() && previous[1] == game.getCurrentCol()) {
                         illegalStepHBox.setVisible(true);
                         fadeOut.playFromStart();
+                        log.warn("Illegal step");
                     }
                 }
 

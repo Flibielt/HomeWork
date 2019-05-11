@@ -2,12 +2,14 @@ package game.mechanics;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 
 /**
  * Class for the game table
  */
+@Slf4j
 class Table {
 
     private int[][] table;
@@ -53,12 +55,30 @@ class Table {
             }
             jsonReader.close();
         } catch (FileNotFoundException e){
-            System.out.println("File not found");
+            log.error("{}, File not found", e.toString());
+            uploadDefaultTable();
         } catch (NullPointerException e){
-            System.out.println("Null pointer exception");
+            log.error("{}, Null pointer exception", e.toString());
+            uploadDefaultTable();
         } catch (IOException e){
-            System.out.println("IOException error");
+            log.error("{}, IOException error", e.toString());
+            uploadDefaultTable();
         }
+    }
+
+    private void uploadDefaultTable() {
+        log.info("Upload default table");
+        int[][] table = {
+                {6, 2, 7, 4, 2, 4, 4, 2},
+                {2, 2, 2, 5, 4, 2, 1, 6},
+                {3, 4, 2, 4, 2, 5, 5, 3},
+                {4, 5, 4, 3, 2, 2, 3, 4},
+                {2, 1, 2, 3, 4, 4, 2, 3},
+                {2, 4, 3, 2, 3, 3, 6, 4},
+                {6, 4, 2, 3, 3, 2, 6, 3},
+                {6, 7, 4, 3, 3, 2, 2, 0}
+        };
+        this.table = table;
     }
 
     /**

@@ -8,10 +8,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MyApplication extends Application {
 
     private Game game;
@@ -24,14 +25,12 @@ public class MyApplication extends Application {
         primaryStage.setTitle("Game");
         primaryStage.setResizable(false);
 
-        StackPane stackPane = new StackPane();
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(10);
+        vBox.setSpacing(15);
 
         Button newGameButton = new Button();
         Button loadGameButton = new Button();
-        //stackPane.getChildren().addAll(newGameButton, loadGameButton);
         vBox.getChildren().addAll(newGameButton, loadGameButton);
 
         newGameButton.setText("START NEW GAME");
@@ -49,8 +48,10 @@ public class MyApplication extends Application {
             public void handle(ActionEvent actionEvent) {
                 game.loadGame();
                 if (game.getName().equals("")) {
+                    log.warn("There is no saved game to be loaded");
                     gameLoader.LoadNewGameCreator(game, primaryStage);
                 } else {
+                    log.info("Load saved game");
                     gameLoader.LoadPreviousGame(game, primaryStage);
                 }
             }

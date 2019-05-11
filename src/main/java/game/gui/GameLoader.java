@@ -11,15 +11,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class GameLoader {
 
     public void LoadNewGameCreator(Game game, Stage primaryStage) {
         primaryStage.setTitle("Create new game");
         HBox hBox = new HBox();
         Text nameText = new Text("Name:");
-        TextField textField = new TextField();
-        hBox.getChildren().addAll(nameText, textField);
+        TextField playerName = new TextField();
+        hBox.getChildren().addAll(nameText, playerName);
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
         VBox vBox = new VBox();
@@ -28,9 +30,13 @@ public class GameLoader {
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (!textField.getText().equals("")) {
-                    game.setName(textField.getText());
-                    GameWindow.ShowGameWindow(game, primaryStage);
+                if (!playerName.getText().equals("")) {
+                    if (!playerName.getText().equals("")) {
+                        game.setName(playerName.getText());
+                        log.info("New player: {}", playerName.getText());
+                        log.info("New game created");
+                        GameWindow.ShowGameWindow(game, primaryStage);
+                    }
                 }
             }
         });

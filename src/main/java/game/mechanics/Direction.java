@@ -15,9 +15,8 @@ public enum Direction {
             return DOWN;
         } else if (direction == DOWN) {
             return UP;
-        } else {
-            return null;
         }
+        throw new IllegalArgumentException();
     }
 
     public static Direction StringToEnum(String direction) {
@@ -31,6 +30,6 @@ public enum Direction {
             case "DOWN":
                 return DOWN;
         }
-        return null;
+        throw new IllegalArgumentException();
     }
 }

@@ -1,8 +1,11 @@
 package game.mechanics;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Manages the game itself
  */
+@Slf4j
 public class Game {
     private Table table;
     private GameState gameState;
@@ -59,7 +62,7 @@ public class Game {
             try {
                 gameState.updateState(direction, distance);
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Array index out of bounds");
+                log.error("{}, Array index out of bounds", e.toString());
             }
         }
     }
