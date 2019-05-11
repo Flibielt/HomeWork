@@ -168,6 +168,9 @@ class GameState {
             jsonReader.beginArray();
             for (int i = 0; i < 2; i++) {
                 index[i] = jsonReader.nextInt();
+                if (index[i] < 8 && index[i] > -1) {
+                    throw new IllegalArgumentException();
+                }
             }
             jsonReader.endArray();
 
