@@ -15,5 +15,5 @@ Home work for software engineering
 - The leader board and the game state are saved in json files
 
 ## The game in action
-![The game in action](src/images/example.png)
+![The game in action](example.png)
 
