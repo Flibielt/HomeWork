@@ -83,7 +83,11 @@ public class GameWindow {
                         log.warn("Illegal step");
                     }
                 }
-
+                if (game.isGoal()) {
+                    game.updateLeaderboard();
+                    LeaderboardWindow.showLeaderboard(game);
+                    primaryStage.close();
+                }
                 steps.setText("Steps: " + game.getSteps());
             }
         });

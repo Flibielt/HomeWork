@@ -90,7 +90,7 @@ class Leaderboard {
 
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(classLoader.getResource("state.json").getPath()));
+            JsonWriter jsonWriter = new JsonWriter(new FileWriter(classLoader.getResource("leaderboard.json").getPath()));
 
             jsonWriter.beginObject();
             jsonWriter.name("players");

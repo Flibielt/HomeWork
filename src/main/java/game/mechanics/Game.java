@@ -11,7 +11,6 @@ public class Game {
     private GameState gameState;
     private Leaderboard leaderboard;
     private String name;
-    private int[] current;
 
     /**
      * Gives the score of the field
@@ -44,7 +43,7 @@ public class Game {
      * @return true or false
      */
     public boolean isGoal(){
-        return getField(current[0], current[1]) == 0;
+        return getField(getCurrentRow(), getCurrentCol()) == 0;
     }
 
     public void updateLeaderboard() {
@@ -77,8 +76,6 @@ public class Game {
 
     public void loadGame() {
         gameState.loadState();
-        current[0] = gameState.getRow();
-        current[1] = gameState.getCol();
         name = gameState.getName();
 
     }
@@ -103,7 +100,6 @@ public class Game {
         table = new Table();
         gameState = new GameState();
         leaderboard = new Leaderboard();
-        current = new int[2];
         name = "";
     }
 
