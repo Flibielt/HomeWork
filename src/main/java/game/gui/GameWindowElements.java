@@ -11,10 +11,19 @@ import javafx.scene.text.Text;
 
 import static game.gui.GraphicElements.fieldRectangle;
 
+/**
+ * The main elements of the {@link game.gui.GameWindow}
+ */
 public class GameWindowElements {
 
     private static Rectangle[][] rectangles;
 
+    /**
+     * Creates the menu for the {@link game.gui.GameWindow}
+     *
+     * @param game the game mechanics
+     * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
+     */
     public static void CreateMenu(Game game, StackPane stackPane) {
         MenuBar menuBar = new MenuBar();
 
@@ -49,6 +58,12 @@ public class GameWindowElements {
         menuBar.setTranslateY(-240);
     }
 
+    /**
+     * Creates the fields for the {@link game.gui.GameWindow}
+     *
+     * @param game the game mechanics
+     * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
+     */
     public static void CreateFields(Game game, StackPane stackPane) {
         Text[][] fields = new Text[8][8];
         rectangles = new Rectangle[8][8];
@@ -73,6 +88,13 @@ public class GameWindowElements {
         }
     }
 
+    /**
+     * Changes a field in the {@link game.gui.GameWindow}
+     *
+     * @param row the row of the field
+     * @param col the column of the field
+     * @param color the new color of the field
+     */
     public static void ChangeRectangleColor(int row, int col, Color color) {
         rectangles[row][col].setFill(color);
     }

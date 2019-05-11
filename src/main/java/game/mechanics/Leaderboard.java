@@ -20,7 +20,7 @@ class Leaderboard {
     }
 
     /**
-     * Uploads the leaderboard from a file
+     * Uploads the leader board from a file
      */
     private void upload() {
         String name = "";
@@ -85,6 +85,9 @@ class Leaderboard {
         }
     }
 
+    /**
+     * Writes the updated leader board into leaderboard.json
+     */
     void update() {
         try {
 
@@ -111,6 +114,11 @@ class Leaderboard {
 
     }
 
+    /**
+     * Gives a player from the leader board by index
+     * @param position the position in the leader board
+     * @return a player from the leader board
+     */
     public PlayerFromLeaderboard getPlayer(int position) {
         try {
             return leaderboard.get(position);
@@ -120,6 +128,10 @@ class Leaderboard {
         }
     }
 
+    /**
+     * Gives the count of the players in the leader board
+     * @return the size of the leader board
+     */
     int getLeaderboardSize() {
         return leaderboard.size();
     }

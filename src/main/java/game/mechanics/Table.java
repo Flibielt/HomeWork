@@ -60,6 +60,9 @@ class Table {
         }
     }
 
+    /**
+     * Loads the default table
+     */
     private void uploadDefaultTable() {
         log.info("Upload default table");
         int[][] table = {

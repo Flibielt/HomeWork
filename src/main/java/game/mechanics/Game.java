@@ -51,10 +51,19 @@ public class Game {
         leaderboard.update();
     }
 
+    /**
+     * Gives a player from the leader board
+     * @param index the position in the leader board
+     * @return a {@code PlayerFromLeaderboard}, if the position was valid
+     */
     public PlayerFromLeaderboard getPlayerFromLeaderboard(int index) {
         return leaderboard.getPlayer(index);
     }
 
+    /**
+     * Gives the count of the records in the leader board
+     * @return the size of the leader board
+     */
     public int getLeaderboardSize() {
         return leaderboard.getLeaderboardSize();
     }
@@ -74,24 +83,41 @@ public class Game {
         }
     }
 
+    /**
+     * Loads a previous game
+     */
     public void loadGame() {
         gameState.loadState();
         name = gameState.getName();
-
     }
 
+    /**
+     * Sets the name of the current player
+     * @param name the name of the player
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gives the name of the current player
+     * @return the name of the player
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Saves the current game state
+     */
     public void saveGame() {
         gameState.saveState();
     }
 
+    /**
+     * Gives the count of steps the player did so far
+     * @return the count of steps
+     */
     public int getSteps() {
         return gameState.getSteps();
     }

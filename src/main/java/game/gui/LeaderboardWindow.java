@@ -8,8 +8,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * The window, which shows the leader board
+ */
 public class LeaderboardWindow {
 
+    /**
+     * Shows the leader board
+     *
+     * @param game the game mechanics
+     */
     public static void showLeaderboard(Game game) {
         Stage leaderboardStage = new Stage();
         leaderboardStage.setResizable(false);
@@ -23,6 +31,12 @@ public class LeaderboardWindow {
         leaderboardStage.show();
     }
 
+    /**
+     * Loads the leader board
+     *
+     * @param game the game mechanics
+     * @param vBox the root of the current scene
+     */
     private static void getLeaderboard(Game game, VBox vBox) {
         for (int i = 0; i < game.getLeaderboardSize(); i++) {
             HBox hBox = new HBox();

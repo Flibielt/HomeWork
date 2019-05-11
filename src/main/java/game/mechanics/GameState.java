@@ -41,10 +41,18 @@ class GameState {
      */
     int getCol(){return index[1];}
 
+    /**
+     * Gives the name of the current player
+     * @return the name of the current player
+     */
     String getName() {
         return name;
     }
 
+    /**
+     * Gives the count of steps the player did so far
+     * @return the count of steps
+     */
     int getSteps() {
         return steps;
     }
@@ -185,6 +193,9 @@ class GameState {
         }
     }
 
+    /**
+     * Loads the current default game state
+     */
     private void loadDefaultGameState() {
         name = "";
         index[0] = index[1] = 0;

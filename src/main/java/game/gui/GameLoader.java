@@ -13,9 +13,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Shows the new game creator window, or loads a previous game
+ */
 @Slf4j
 public class GameLoader {
 
+    /**
+     * Creates a window where the player can start a new game
+     *
+     * @param game the game mechanics
+     * @param primaryStage the previous stage
+     */
     public void LoadNewGameCreator(Game game, Stage primaryStage) {
         primaryStage.setTitle("Create new game");
         HBox hBox = new HBox();
@@ -46,6 +55,12 @@ public class GameLoader {
         primaryStage.setScene(new Scene(vBox, 400, 200));
     }
 
+    /**
+     * Loads a previous game
+     *
+     * @param game the game mechanics
+     * @param primaryStage the previous stage
+     */
     public void LoadPreviousGame(Game game, Stage primaryStage) {
         GameWindow.ShowGameWindow(game, primaryStage);
     }

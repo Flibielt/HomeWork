@@ -1,5 +1,8 @@
 package game.mechanics;
 
+/**
+ * A player in the leader board
+ */
 public class PlayerFromLeaderboard {
 
     private String name;

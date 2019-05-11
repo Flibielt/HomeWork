@@ -13,6 +13,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Contains the help and the exit windows
+ */
 @Slf4j
 public class ExtraWindows {
 

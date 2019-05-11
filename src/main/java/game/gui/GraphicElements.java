@@ -46,6 +46,12 @@ public class GraphicElements {
         return rectangle;
     }
 
+    /**
+     * Creates a new {@code FadeTransition} that will be used in {@link game.gui.GameWindow}
+     * @param from the starting point of the animation
+     * @param to the end point of the animation
+     * @return a transition animation
+     */
     public static FadeTransition transitionInitialize(double from, double to) {
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(1250));
         fadeTransition.setFromValue(from);
