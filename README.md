@@ -14,6 +14,4 @@ Home work for software engineering
 - You can save the game state and then load it back
 - The leader board and the game state are saved in json files
 
-## The game in action
-![The game in action](example.png)
 
