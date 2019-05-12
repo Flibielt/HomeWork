@@ -13,9 +13,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Creates Json writers and readers.
+ */
 @Slf4j
 public class FileOperations {
 
+    /**
+     * The file's destination.
+     */
     private String destination;
 
     FileOperations() {
@@ -27,6 +33,12 @@ public class FileOperations {
         }
     }
 
+    /**
+     * Creates a file if it was not created yet.
+     *
+     * @param fileName the name of the file
+     * @return a Json reader to the file
+     */
     public JsonReader CopyFileFromJar(String fileName) {
         try {
             File directory = new File(destination);
@@ -57,6 +69,12 @@ public class FileOperations {
         }
     }
 
+    /**
+     * Creates if it was not created yet.
+     *
+     * @param fileName the name of the file
+     * @return a Json writer to the file
+     */
     public JsonWriter CreateJsonWriter(String fileName) {
         try {
             if (destination.substring(destination.length() - 1).equals(File.separator)) {
