@@ -1,7 +1,7 @@
 package game.mechanics;
 
 /**
- * Enum representing the four possible direction
+ * Enum representing the four possible direction.
  */
 public enum Direction {
     LEFT,
@@ -10,7 +10,7 @@ public enum Direction {
     DOWN;
 
     /**
-     * Gives back the opposite of the given direction
+     * Gives back the opposite of the given direction.
      *
      * @param direction the direction to be reversed
      * @return the opposite of the given direction
@@ -29,7 +29,7 @@ public enum Direction {
     }
 
     /**
-     * Converts a string to {@code Direction} if possible
+     * Converts a string to {@code Direction} if possible.
      *
      * @param direction a possible direction in {@code String}
      * @return a {@code @Direction} if the argument was a valid direction

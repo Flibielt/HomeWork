@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.LinkedList;
 
+/**
+ * Stores the leader board.
+ */
 @Slf4j
 class Leaderboard {
 
@@ -20,7 +23,7 @@ class Leaderboard {
     }
 
     /**
-     * Uploads the leader board from a file
+     * Uploads the leader board from a file.
      */
     private void upload() {
         String name = "";
@@ -56,7 +59,8 @@ class Leaderboard {
     }
 
     /**
-     * Creates a new player and puts in the leaderboard, if it is good enough
+     * Creates a new player and puts in the leader board, if it is good enough.
+     *
      * @param name the name of the player
      * @param steps the steps the player did to reach the goal
      */
@@ -86,7 +90,7 @@ class Leaderboard {
     }
 
     /**
-     * Writes the updated leader board into leaderboard.json
+     * Writes the updated leader board into leaderboard.json.
      */
     void update() {
         try {
@@ -115,7 +119,8 @@ class Leaderboard {
     }
 
     /**
-     * Gives a player from the leader board by index
+     * Gives a player from the leader board by index.
+     *
      * @param position the position in the leader board
      * @return a player from the leader board
      */
@@ -129,7 +134,8 @@ class Leaderboard {
     }
 
     /**
-     * Gives the count of the players in the leader board
+     * Gives the count of the players in the leader board.
+     *
      * @return the size of the leader board
      */
     int getLeaderboardSize() {

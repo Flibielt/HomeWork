@@ -1,7 +1,7 @@
 package game.mechanics;
 
 /**
- * A player in the leader board
+ * A player in the leader board.
  */
 public class PlayerFromLeaderboard {
 
@@ -14,7 +14,8 @@ public class PlayerFromLeaderboard {
     }
 
     /**
-     * Returns the player's name
+     * Returns the player's name.
+     *
      * @return the player's name
      */
     public String getName() {
@@ -22,7 +23,8 @@ public class PlayerFromLeaderboard {
     }
 
     /**
-     * Returns the player's steps
+     * Returns the count of the player's steps.
+     *
      * @return the steps
      */
     public int getSteps() {
@@ -41,7 +43,8 @@ public class PlayerFromLeaderboard {
     }
 
     /**
-     * Returns if the current player made the game with fewer steps
+     * Returns if the current player made the game with fewer steps.
+     *
      * @param playerFromLeaderboard the other player
      * @return true or false
      */

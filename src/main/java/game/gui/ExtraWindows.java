@@ -14,13 +14,13 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Contains the help and the exit windows
+ * Contains the help and the exit windows.
  */
 @Slf4j
 public class ExtraWindows {
 
     /**
-     * Creates a new window, which describes the game's rules
+     * Creates a new window, which describes the game's rules.
      */
     public static void HelpWindow() {
         Stage helpStage = new Stage();
@@ -47,7 +47,9 @@ public class ExtraWindows {
     }
 
     /**
-     * Creates a new window, where the player can exit with or without saving or return to the game
+     * Creates a new window, where the player can exit with or without saving or return to the game.
+     *
+     * @param game access point to the game mechanics
      */
     public static void ExitWindow(Game game) {
         HBox hBox = new HBox();

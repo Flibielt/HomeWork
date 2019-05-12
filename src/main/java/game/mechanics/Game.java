@@ -3,7 +3,7 @@ package game.mechanics;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Manages the game itself
+ * Manages the game itself.
  */
 @Slf4j
 public class Game {
@@ -13,7 +13,8 @@ public class Game {
     private String name;
 
     /**
-     * Gives the score of the field
+     * Gives the score of the field.
+     *
      * @param row is between 0 and 8
      * @param col is between 0 and 8
      * @return the score of the given field
@@ -23,7 +24,8 @@ public class Game {
     }
 
     /**
-     * Returns the current row
+     * Returns the current row.
+     *
      * @return the current row
      */
     public int getCurrentRow() {
@@ -31,7 +33,8 @@ public class Game {
     }
 
     /**
-     * Returns the current column
+     * Returns the current column.
+     *
      * @return the current column
      */
     public int getCurrentCol() {
@@ -39,7 +42,8 @@ public class Game {
     }
 
     /**
-     * Returns true if the current field is the goal
+     * Returns true if the current field is the goal.
+     *
      * @return true or false
      */
     public boolean IsGoal(){
@@ -52,7 +56,8 @@ public class Game {
     }
 
     /**
-     * Gives a player from the leader board
+     * Gives a player from the leader board.
+     *
      * @param index the position in the leader board
      * @return a {@code PlayerFromLeaderboard}, if the position was valid
      */
@@ -61,7 +66,8 @@ public class Game {
     }
 
     /**
-     * Gives the count of the records in the leader board
+     * Gives the count of the records in the leader board.
+     *
      * @return the size of the leader board
      */
     public int getLeaderboardSize() {
@@ -69,7 +75,8 @@ public class Game {
     }
 
     /**
-     * Steps the player into a specific direction
+     * Steps the player into a specific direction.
+     *
      * @param direction is where the player steps
      */
     public void step(Direction direction) {
@@ -84,7 +91,7 @@ public class Game {
     }
 
     /**
-     * Loads a previous game
+     * Loads a previous game.
      */
     public void LoadGame() {
         gameState.LoadState();
@@ -92,7 +99,8 @@ public class Game {
     }
 
     /**
-     * Sets the name of the current player
+     * Sets the name of the current player.
+     *
      * @param name the name of the player
      */
     public void setName(String name) {
@@ -100,7 +108,8 @@ public class Game {
     }
 
     /**
-     * Gives the name of the current player
+     * Gives the name of the current player.
+     *
      * @return the name of the player
      */
     public String getName() {
@@ -108,14 +117,15 @@ public class Game {
     }
 
     /**
-     * Saves the current game state
+     * Saves the current game state.
      */
     public void saveGame() {
         gameState.saveState();
     }
 
     /**
-     * Gives the count of steps the player did so far
+     * Gives the count of steps the player did so far.
+     *
      * @return the count of steps
      */
     public int getSteps() {
@@ -123,7 +133,8 @@ public class Game {
     }
 
     /**
-     * Loads a specific game state
+     * Loads a specific game state.
+     *
      * @param row the row of the player's position
      * @param col the column of the player's position
      * @param notAllowedDirection the direction of the previous field

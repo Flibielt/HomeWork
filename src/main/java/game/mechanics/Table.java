@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.*;
 
 /**
- * Class for the game table
+ * Class for the game table.
  */
 @Slf4j
 class Table {
@@ -20,7 +20,7 @@ class Table {
     }
 
     /**
-     * Uploads the table from json file
+     * Uploads the table from json file.
      */
     private void uploadTable(){
         try {
@@ -61,7 +61,7 @@ class Table {
     }
 
     /**
-     * Loads the default table
+     * Loads the default table.
      */
     private void uploadDefaultTable() {
         log.info("Upload default table");
@@ -79,7 +79,8 @@ class Table {
     }
 
     /**
-     * Gives the score of the given field
+     * Gives the score of the given field.
+     *
      * @param row the field's row
      * @param col the field's column
      * @return the score of the field
@@ -89,7 +90,7 @@ class Table {
     }
 
     /**
-     * Writes out the table on the console
+     * Writes out the table on the console.
      */
     void writeOut(){
         for(int i = 0; i < 8; i++){

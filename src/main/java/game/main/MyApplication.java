@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The main menu of the game
+ * The main menu of the game.
  */
 @Slf4j
 public class MyApplication extends Application {

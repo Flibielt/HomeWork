@@ -9,10 +9,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * Contains some graphic elements for the {@link GameWindow}.
+ */
 public class GraphicElements {
 
     /**
-     * Creates a HBOX with red border which contains a Text
+     * Creates a HBOX with red border which contains a Text.
+     *
      * @param text the value of the Text
      * @return the HBox
      */
@@ -33,7 +37,8 @@ public class GraphicElements {
     }
 
     /**
-     * Creates a Rectangle which represents a field of the table
+     * Creates a Rectangle which represents a field of the table.
+     *
      * @return rectangle with border
      */
     public static Rectangle fieldRectangle() {
@@ -47,7 +52,8 @@ public class GraphicElements {
     }
 
     /**
-     * Creates a new {@code FadeTransition} that will be used in {@link game.gui.GameWindow}
+     * Creates a new {@code FadeTransition} that will be used in {@link game.gui.GameWindow}.
+     *
      * @param from the starting point of the animation
      * @param to the end point of the animation
      * @return a transition animation

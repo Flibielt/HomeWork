@@ -1,4 +1,4 @@
 /**
- * Package for the game
+ * Package for the game.
  */
 package game;

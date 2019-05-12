@@ -12,14 +12,17 @@ import javafx.scene.text.Text;
 import static game.gui.GraphicElements.fieldRectangle;
 
 /**
- * The main elements of the {@link game.gui.GameWindow}
+ * The main elements of the {@link game.gui.GameWindow}.
  */
 public class GameWindowElements {
 
+    /**
+     * The fields that contains the score
+     */
     private static Rectangle[][] rectangles;
 
     /**
-     * Creates the menu for the {@link game.gui.GameWindow}
+     * Creates the menu for the {@link game.gui.GameWindow}.
      *
      * @param game the game mechanics
      * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
@@ -59,7 +62,7 @@ public class GameWindowElements {
     }
 
     /**
-     * Creates the fields for the {@link game.gui.GameWindow}
+     * Creates the fields for the {@link game.gui.GameWindow}.
      *
      * @param game the game mechanics
      * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
@@ -89,7 +92,7 @@ public class GameWindowElements {
     }
 
     /**
-     * Changes a field in the {@link game.gui.GameWindow}
+     * Changes a field in the {@link game.gui.GameWindow}.
      *
      * @param row the row of the field
      * @param col the column of the field

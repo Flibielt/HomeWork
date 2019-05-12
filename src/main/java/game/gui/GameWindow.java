@@ -18,12 +18,12 @@ import javafx.stage.WindowEvent;
 import static game.gui.GraphicElements.*;
 
 /**
- * The game window
+ * The game window.
  */
 public class GameWindow {
 
     /**
-     * Shows the game window
+     * Shows the game window.
      *
      * @param game the game mechanics
      * @param primaryStage the previous stage

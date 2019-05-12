@@ -9,12 +9,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * The window, which shows the leader board
+ * The window, which shows the leader board.
  */
 public class LeaderboardWindow {
 
     /**
-     * Shows the leader board
+     * Shows the leader board.
      *
      * @param game the game mechanics
      */
@@ -32,7 +32,7 @@ public class LeaderboardWindow {
     }
 
     /**
-     * Loads the leader board
+     * Loads the leader board.
      *
      * @param game the game mechanics
      * @param vBox the root of the current scene

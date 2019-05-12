@@ -14,13 +14,13 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Shows the new game creator window, or loads a previous game
+ * Shows the new game creator window, or loads a previous game.
  */
 @Slf4j
 public class GameLoader {
 
     /**
-     * Creates a window where the player can start a new game
+     * Creates a window where the player can start a new game.
      *
      * @param game the game mechanics
      * @param primaryStage the previous stage
@@ -56,7 +56,7 @@ public class GameLoader {
     }
 
     /**
-     * Loads a previous game
+     * Loads a previous game.
      *
      * @param game the game mechanics
      * @param primaryStage the previous stage
