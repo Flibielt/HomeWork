@@ -15,7 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import static game.gui.GraphicElements.*;
+import static game.gui.GraphicElements.borderedHBox;
+import static game.gui.GraphicElements.transitionInitialize;
 
 /**
  * The game window.

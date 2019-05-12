@@ -4,7 +4,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.*;
+import java.io.FileReader;
 
 /**
  * Class for the game table.
