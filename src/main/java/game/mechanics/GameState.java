@@ -68,6 +68,8 @@ class GameState {
             unallowedDirection = Direction.GetOppositeDirection(direction);
             steps++;
             logStep(direction);
+        } else {
+            throw new IllegalArgumentException("You cannot step there");
         }
     }
 
@@ -82,6 +84,8 @@ class GameState {
             unallowedDirection = Direction.GetOppositeDirection(direction);
             steps++;
             logStep(direction);
+        } else {
+            throw new IllegalArgumentException("You cannot step there");
         }
     }
 
@@ -157,7 +161,7 @@ class GameState {
     /**
      * Loads the game state of a previous game from a file
      */
-    void loadState() {
+    void LoadState() {
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
@@ -193,6 +197,36 @@ class GameState {
 
         if (name.equals("")) {
             loadDefaultGameState();
+        }
+    }
+
+    /**
+     * Loads a specific game state
+     * @param row the row of the player's position
+     * @param col the column of the player's position
+     * @param notAllowedDirection the direction of the previous field
+     * @param steps the steps the player did so far
+     */
+    void LoadState(int row, int col, Direction notAllowedDirection, int steps) {
+        try {
+            if (row > 7 || row < 0) {
+                loadDefaultGameState();
+                throw new IllegalArgumentException();
+            } else if (col > 7 || col < 0) {
+                loadDefaultGameState();
+                throw new IllegalArgumentException();
+            } else if (steps < 0) {
+                loadDefaultGameState();
+                throw new IllegalArgumentException();
+            } else {
+                index[0] = row;
+                index[1] = col;
+                unallowedDirection = notAllowedDirection;
+                this.steps = steps;
+                log.info("The player's position is set to ({}, {}), not allowed direction: {}, steps: {}", row, col, notAllowedDirection, steps);
+            }
+        } catch (Exception e) {
+            log.error(e.toString());
         }
     }
 

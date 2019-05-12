@@ -52,7 +52,7 @@ public class MyApplication extends Application {
         loadGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                game.loadGame();
+                game.LoadGame();
                 if (game.getName().equals("")) {
                     log.warn("There is no saved game to be loaded");
                     gameLoader.LoadNewGameCreator(game, primaryStage);

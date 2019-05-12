@@ -42,7 +42,7 @@ public class Game {
      * Returns true if the current field is the goal
      * @return true or false
      */
-    public boolean isGoal(){
+    public boolean IsGoal(){
         return getField(getCurrentRow(), getCurrentCol()) == 0;
     }
 
@@ -77,7 +77,7 @@ public class Game {
         if (!gameState.getUnallowedDirection().equals(direction)) {
             try {
                 gameState.updateState(direction, distance);
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 log.error(e.toString());
             }
         }
@@ -86,8 +86,8 @@ public class Game {
     /**
      * Loads a previous game
      */
-    public void loadGame() {
-        gameState.loadState();
+    public void LoadGame() {
+        gameState.LoadState();
         name = gameState.getName();
     }
 
@@ -120,6 +120,17 @@ public class Game {
      */
     public int getSteps() {
         return gameState.getSteps();
+    }
+
+    /**
+     * Loads a specific game state
+     * @param row the row of the player's position
+     * @param col the column of the player's position
+     * @param notAllowedDirection the direction of the previous field
+     * @param steps the steps the player did so far
+     */
+    public void LoadSate(int row, int col, Direction notAllowedDirection, int steps) {
+        gameState.LoadState(row, col, notAllowedDirection, steps);
     }
 
     public Game() {

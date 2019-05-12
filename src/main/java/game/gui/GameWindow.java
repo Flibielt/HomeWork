@@ -14,14 +14,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import lombok.extern.slf4j.Slf4j;
 
 import static game.gui.GraphicElements.*;
 
 /**
  * The game window
  */
-@Slf4j
 public class GameWindow {
 
     /**
@@ -89,10 +87,9 @@ public class GameWindow {
                     if (previous[0] == game.getCurrentRow() && previous[1] == game.getCurrentCol()) {
                         illegalStepHBox.setVisible(true);
                         fadeOut.playFromStart();
-                        log.warn("Illegal step");
                     }
                 }
-                if (game.isGoal()) {
+                if (game.IsGoal()) {
                     game.updateLeaderboard();
                     LeaderboardWindow.showLeaderboard(game);
                     primaryStage.close();
