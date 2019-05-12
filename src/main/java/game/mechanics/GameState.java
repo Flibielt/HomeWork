@@ -4,8 +4,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -17,6 +15,7 @@ class GameState {
     private Direction unallowedDirection;
     private String name;
     private int steps;
+    private FileOperations fileOperations;
 
     /**
      * Logs the player's current and position and the direction the player stepped.
@@ -32,6 +31,7 @@ class GameState {
         index = new int[2];
         unallowedDirection = Direction.LEFT;
         steps = 0;
+        fileOperations = new FileOperations();
     }
 
     /**
@@ -48,6 +48,14 @@ class GameState {
      */
     int getCol(){return index[1];}
 
+    /**
+     * Sets the name of the current player.
+     *
+     * @param name the player's name
+     */
+    void setName(String name) {
+        this.name = name;
+    }
     /**
      * Gives the name of the current player.
      *
@@ -138,9 +146,7 @@ class GameState {
     void saveState() {
         try {
 
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(classLoader.getResource("state.json").getPath()));
+            JsonWriter jsonWriter = fileOperations.CreateJsonWriter("state.json");
 
             jsonWriter.beginObject();
 
@@ -176,16 +182,15 @@ class GameState {
      */
     void LoadState() {
         try {
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-            JsonReader jsonReader = new JsonReader(new FileReader(classLoader.getResource("state.json").getPath()));
+            JsonReader jsonReader = fileOperations.CopyFileFromJar("state.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();
             jsonReader.beginArray();
             for (int i = 0; i < 2; i++) {
                 index[i] = jsonReader.nextInt();
-                if (index[i] < 8 && index[i] > -1) {
+                if (index[i] > 7 || index[i] < 0) {
                     throw new IllegalArgumentException();
                 }
             }

@@ -5,8 +5,6 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.LinkedList;
 
 /**
@@ -16,9 +14,11 @@ import java.util.LinkedList;
 class Leaderboard {
 
     private LinkedList<PlayerFromLeaderboard> leaderboard;
+    private FileOperations fileOperations;
 
     Leaderboard() {
         leaderboard = new LinkedList<PlayerFromLeaderboard>();
+        fileOperations = new FileOperations();
         upload();
     }
 
@@ -29,9 +29,8 @@ class Leaderboard {
         String name = "";
         int steps = 0;
         try {
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-            JsonReader jsonReader = new JsonReader(new FileReader(classLoader.getResource("leaderboard.json").getPath()));
+            JsonReader jsonReader = fileOperations.CopyFileFromJar("leaderboard.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();
@@ -95,9 +94,7 @@ class Leaderboard {
     void update() {
         try {
 
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
-            JsonWriter jsonWriter = new JsonWriter(new FileWriter(classLoader.getResource("leaderboard.json").getPath()));
+            JsonWriter jsonWriter = fileOperations.CreateJsonWriter("leaderboard.json");
 
             jsonWriter.beginObject();
             jsonWriter.name("players");

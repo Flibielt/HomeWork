@@ -10,7 +10,6 @@ public class Game {
     private Table table;
     private GameState gameState;
     private Leaderboard leaderboard;
-    private String name;
 
     /**
      * Gives the score of the field.
@@ -51,7 +50,7 @@ public class Game {
     }
 
     public void updateLeaderboard() {
-        leaderboard.newPlayer(name, gameState.getSteps());
+        leaderboard.newPlayer(gameState.getName(), gameState.getSteps());
         leaderboard.update();
     }
 
@@ -95,7 +94,6 @@ public class Game {
      */
     public void LoadGame() {
         gameState.LoadState();
-        name = gameState.getName();
     }
 
     /**
@@ -104,7 +102,7 @@ public class Game {
      * @param name the name of the player
      */
     public void setName(String name) {
-        this.name = name;
+        gameState.setName(name);
     }
 
     /**
@@ -113,7 +111,7 @@ public class Game {
      * @return the name of the player
      */
     public String getName() {
-        return name;
+        return gameState.getName();
     }
 
     /**
@@ -148,7 +146,6 @@ public class Game {
         table = new Table();
         gameState = new GameState();
         leaderboard = new Leaderboard();
-        name = "";
     }
 
 }

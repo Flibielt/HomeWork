@@ -4,8 +4,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileReader;
-
 /**
  * Class for the game table.
  */
@@ -13,9 +11,11 @@ import java.io.FileReader;
 class Table {
 
     private int[][] table;
+    private FileOperations fileOperations;
 
     Table(){
         table = new int[8][8];
+        fileOperations = new FileOperations();
         uploadTable();
     }
 
@@ -25,8 +25,7 @@ class Table {
     private void uploadTable(){
         try {
 
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            JsonReader jsonReader = new JsonReader(new FileReader(classLoader.getResource("table.json").getPath()));
+            JsonReader jsonReader = fileOperations.CopyFileFromJar("table.json");
 
             jsonReader.beginObject();
             int row = 0;
