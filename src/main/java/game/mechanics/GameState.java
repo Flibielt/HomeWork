@@ -223,6 +223,9 @@ class GameState {
 
             jsonReader.nextName();
             steps = jsonReader.nextInt();
+            if (steps < 0) {
+                throw new IllegalArgumentException("The count of steps cannot be negative");
+            }
 
             jsonReader.endObject();
             jsonReader.close();
