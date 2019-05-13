@@ -41,7 +41,7 @@ public class LeaderboardWindow {
         for (int i = 0; i < game.getLeaderboardSize(); i++) {
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
-            Text position = new Text(Integer.toString(i + 1));
+            Text position = new Text(i + 1 + ". ");
             Text playerName = new Text(game.getPlayerFromLeaderboard(i).getName());
             Text playerScore = new Text(Integer.toString(game.getPlayerFromLeaderboard(i).getSteps()));
             hBox.getChildren().addAll(position, playerName, playerScore);

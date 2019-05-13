@@ -54,7 +54,9 @@ class Leaderboard {
                     name = jsonReader.nextString();
                 } else if (jsonReader.peek() == JsonToken.NUMBER) {
                     steps = jsonReader.nextInt();
-                    newPlayer(name, steps);
+                    if (steps > 0 && !name.equals("")) {
+                        newPlayer(name, steps);
+                    }
                 } else if (jsonReader.peek() == JsonToken.END_OBJECT) {
                     jsonReader.endObject();
                 }
