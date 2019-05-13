@@ -16,7 +16,7 @@ public class LeaderboardWindow {
     /**
      * Shows the leader board.
      *
-     * @param game  {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      */
     public static void showLeaderboard(Game game) {
         Stage leaderboardStage = new Stage();
@@ -34,7 +34,7 @@ public class LeaderboardWindow {
     /**
      * Loads the leader board.
      *
-     * @param game {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param vBox the {@code VBox} is the root of the current {@code Scene}
      */
     private static void getLeaderboard(Game game, VBox vBox) {

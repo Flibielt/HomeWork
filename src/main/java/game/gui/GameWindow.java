@@ -26,7 +26,7 @@ public class GameWindow {
     /**
      * Shows the game window.
      *
-     * @param game {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@link Stage}
      */
     public static void ShowGameWindow(Game game, Stage primaryStage) {

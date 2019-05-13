@@ -22,7 +22,7 @@ public class GameLoader {
     /**
      * Creates a window where the player can start a new game.
      *
-     * @param game {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@link Stage}
      */
     public void LoadNewGameCreator(Game game, Stage primaryStage) {
@@ -58,7 +58,7 @@ public class GameLoader {
     /**
      * Loads a previous game.
      *
-     * @param game {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@link Stage}
      */
     public void LoadPreviousGame(Game game, Stage primaryStage) {

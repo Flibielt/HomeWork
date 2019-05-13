@@ -24,7 +24,7 @@ public class GameWindowElements {
     /**
      * Creates the menu for the {@link GameWindow}.
      *
-     * @param game the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
     public static void CreateMenu(Game game, StackPane stackPane) {
@@ -64,7 +64,7 @@ public class GameWindowElements {
     /**
      * Creates the fields for the {@link GameWindow}.
      *
-     * @param game the game mechanics
+     * @param game access to the {@link Game} mechanics
      * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
     public static void CreateFields(Game game, StackPane stackPane) {

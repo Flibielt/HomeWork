@@ -49,7 +49,7 @@ public class ExtraWindows {
     /**
      * Creates a new window, where the player can exit with or without saving or return to the game.
      *
-     * @param game {@link Game} access point to the game mechanics
+     * @param game access to the {@link Game} mechanics
      */
     public static void ExitWindow(Game game) {
         HBox hBox = new HBox();

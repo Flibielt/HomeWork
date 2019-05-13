@@ -10,7 +10,7 @@ public class Main {
     /**
      * Calls the {@link MyApplication} OpenFX application.
      *
-     * @param args the arguments of the program, {@code null} by default
+     * @param args the arguments of the program
      */
     public static void main(String[] args) {
         Application.launch(MyApplication.class, args);
