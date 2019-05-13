@@ -96,7 +96,7 @@ public class Game {
             try {
                 gameState.updateState(direction, distance);
             } catch (Exception e) {
-                log.error(e.toString());
+                log.warn(e.toString());
             }
         }
     }
