@@ -19,7 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MyApplication extends Application {
 
+    /**
+     * Access point to the {@link Game} mechanics.
+     */
     private Game game;
+    /**
+     * Loads a new or a previous game.
+     */
     private GameLoader gameLoader;
 
     @Override

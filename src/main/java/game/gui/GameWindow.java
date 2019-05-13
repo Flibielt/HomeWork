@@ -26,8 +26,8 @@ public class GameWindow {
     /**
      * Shows the game window.
      *
-     * @param game the game mechanics
-     * @param primaryStage the previous stage
+     * @param game {@link Game} access point to the game mechanics
+     * @param primaryStage the previous {@link Stage}
      */
     public static void ShowGameWindow(Game game, Stage primaryStage) {
         primaryStage.setTitle("Game");

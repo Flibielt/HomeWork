@@ -1,12 +1,24 @@
 package game.mechanics;
 
 /**
- * Enum representing the four possible direction.
+ * Represents the four possible direction.
  */
 public enum Direction {
+    /**
+     * Represents the direction left.
+     */
     LEFT,
+    /**
+     * Represents the direction right.
+     */
     RIGHT,
+    /**
+     * Represents the direction up.
+     */
     UP,
+    /**
+     * Represents the direction down.
+     */
     DOWN;
 
     /**
@@ -29,10 +41,10 @@ public enum Direction {
     }
 
     /**
-     * Converts a string to {@code Direction} if possible.
+     * Converts a string to {@link Direction} if possible.
      *
-     * @param direction a possible direction in {@code String}
-     * @return a {@code @Direction} if the argument was a valid direction
+     * @param direction a possible direction in {@link String}
+     * @return a {@link Direction} if the argument was a valid direction
      */
     public static Direction StringToEnum(String direction) {
         switch (direction.toUpperCase()) {

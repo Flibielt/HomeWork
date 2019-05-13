@@ -13,9 +13,18 @@ import java.util.LinkedList;
 @Slf4j
 class Leaderboard {
 
+    /**
+     * The leader board.
+     */
     private LinkedList<PlayerFromLeaderboard> leaderboard;
+    /**
+     * {@link FileOperations} contains json file operations.
+     */
     private FileOperations fileOperations;
 
+    /**
+     * The constructor of {@link Leaderboard}, uploads the leader board from a json file.
+     */
     Leaderboard() {
         leaderboard = new LinkedList<PlayerFromLeaderboard>();
         fileOperations = new FileOperations();
@@ -58,7 +67,7 @@ class Leaderboard {
     }
 
     /**
-     * Creates a new player and puts in the leader board, if it is good enough.
+     * Creates a new {@link PlayerFromLeaderboard} and puts in the leader board, if it is good enough.
      *
      * @param name the name of the player
      * @param steps the steps the player did to reach the goal
@@ -116,10 +125,10 @@ class Leaderboard {
     }
 
     /**
-     * Gives a player from the leader board by index.
+     * Gives a {@link PlayerFromLeaderboard} from the leader board by index.
      *
      * @param position the position in the leader board
-     * @return a player from the leader board
+     * @return a {@link PlayerFromLeaderboard} from the leader board
      */
     public PlayerFromLeaderboard getPlayer(int position) {
         try {
@@ -131,7 +140,7 @@ class Leaderboard {
     }
 
     /**
-     * Gives the count of the players in the leader board.
+     * Gives the count of the {@link PlayerFromLeaderboard} in the leader board.
      *
      * @return the size of the leader board
      */

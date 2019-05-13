@@ -1,13 +1,25 @@
 package game.mechanics;
 
 /**
- * A player in the leader board.
+ * A player in the {@link Leaderboard}.
  */
 public class PlayerFromLeaderboard {
 
+    /**
+     * The name of the player.
+     */
     private String name;
+    /**
+     * The count of steps the player did to reach the goal.
+     */
     private int steps;
 
+    /**
+     * The constructor of {@link PlayerFromLeaderboard}.
+     *
+     * @param name the name of the player
+     * @param steps the count of steps the player did to reach the goal
+     */
     PlayerFromLeaderboard(String name, int steps) {
         this.name = name;
         this.steps = steps;
@@ -25,7 +37,7 @@ public class PlayerFromLeaderboard {
     /**
      * Returns the count of the player's steps.
      *
-     * @return the steps
+     * @return the count of steps
      */
     public int getSteps() {
         return steps;
@@ -46,7 +58,7 @@ public class PlayerFromLeaderboard {
      * Returns if the current player made the game with fewer steps.
      *
      * @param playerFromLeaderboard the other player
-     * @return true or false
+     * @return {@code true} if the current player was better, else {@code false}
      */
     boolean isBetterThan(PlayerFromLeaderboard playerFromLeaderboard) {
         return steps <= playerFromLeaderboard.getSteps();

@@ -10,9 +10,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class Table {
 
+    /**
+     * The game table in {@code in} array.
+     */
     private int[][] table;
+    /**
+     * {@link FileOperations} contains json file operations.
+     */
     private FileOperations fileOperations;
 
+    /**
+     * The constructor of {@link Table}.
+     */
     Table(){
         table = new int[8][8];
         fileOperations = new FileOperations();

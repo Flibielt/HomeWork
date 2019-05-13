@@ -22,8 +22,8 @@ public class GameLoader {
     /**
      * Creates a window where the player can start a new game.
      *
-     * @param game the game mechanics
-     * @param primaryStage the previous stage
+     * @param game {@link Game} access point to the game mechanics
+     * @param primaryStage the previous {@link Stage}
      */
     public void LoadNewGameCreator(Game game, Stage primaryStage) {
         primaryStage.setTitle("Create new game");
@@ -58,8 +58,8 @@ public class GameLoader {
     /**
      * Loads a previous game.
      *
-     * @param game the game mechanics
-     * @param primaryStage the previous stage
+     * @param game {@link Game} access point to the game mechanics
+     * @param primaryStage the previous {@link Stage}
      */
     public void LoadPreviousGame(Game game, Stage primaryStage) {
         GameWindow.ShowGameWindow(game, primaryStage);

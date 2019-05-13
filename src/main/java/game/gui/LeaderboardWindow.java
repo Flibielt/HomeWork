@@ -9,14 +9,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * The window, which shows the leader board.
+ * The {@code Stage}, which shows the leader board.
  */
 public class LeaderboardWindow {
 
     /**
      * Shows the leader board.
      *
-     * @param game the game mechanics
+     * @param game  {@link Game} access point to the game mechanics
      */
     public static void showLeaderboard(Game game) {
         Stage leaderboardStage = new Stage();
@@ -34,8 +34,8 @@ public class LeaderboardWindow {
     /**
      * Loads the leader board.
      *
-     * @param game the game mechanics
-     * @param vBox the root of the current scene
+     * @param game {@link Game} access point to the game mechanics
+     * @param vBox the {@code VBox} is the root of the current {@code Scene}
      */
     private static void getLeaderboard(Game game, VBox vBox) {
         for (int i = 0; i < game.getLeaderboardSize(); i++) {

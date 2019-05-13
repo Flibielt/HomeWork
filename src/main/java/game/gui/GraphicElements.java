@@ -15,10 +15,10 @@ import javafx.util.Duration;
 public class GraphicElements {
 
     /**
-     * Creates a HBOX with red border which contains a Text.
+     * Creates a {@code HBox} with red border which contains a {@code Text}.
      *
-     * @param text the value of the Text
-     * @return the HBox
+     * @param text the value of the {@code Text}
+     * @return the {@code HBox}
      */
     public static HBox borderedHBox(String text) {
         Text text1 = new Text();
@@ -37,9 +37,9 @@ public class GraphicElements {
     }
 
     /**
-     * Creates a Rectangle which represents a field of the table.
+     * Creates a {@code Rectangle} which represents a field of the table.
      *
-     * @return rectangle with border
+     * @return {@code Rectangle} with border
      */
     public static Rectangle fieldRectangle() {
         Rectangle rectangle = new Rectangle();
@@ -52,11 +52,11 @@ public class GraphicElements {
     }
 
     /**
-     * Creates a new {@code FadeTransition} that will be used in {@link game.gui.GameWindow}.
+     * Creates a new {@code FadeTransition} that will be used in {@link GameWindow}.
      *
      * @param from the starting point of the animation
      * @param to the end point of the animation
-     * @return a transition animation
+     * @return a {@code FadeTransition}
      */
     public static FadeTransition transitionInitialize(double from, double to) {
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(1250));

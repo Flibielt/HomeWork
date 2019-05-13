@@ -7,8 +7,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Game {
+    /**
+     * The game {@link Table}.
+     */
     private Table table;
+    /**
+     * The current {@link GameState}.
+     */
     private GameState gameState;
+    /**
+     * The game's {@link Leaderboard}.
+     */
     private Leaderboard leaderboard;
 
     /**
@@ -43,29 +52,32 @@ public class Game {
     /**
      * Returns true if the current field is the goal.
      *
-     * @return true or false
+     * @return {@code true} if the current field is 0, else {@code false}
      */
     public boolean IsGoal(){
         return getField(getCurrentRow(), getCurrentCol()) == 0;
     }
 
+    /**
+     * Puts the player to the {@link Leaderboard}.
+     */
     public void updateLeaderboard() {
         leaderboard.newPlayer(gameState.getName(), gameState.getSteps());
         leaderboard.update();
     }
 
     /**
-     * Gives a player from the leader board.
+     * Gives a {@link PlayerFromLeaderboard} from the {@link Leaderboard}.
      *
-     * @param index the position in the leader board
-     * @return a {@code PlayerFromLeaderboard}, if the position was valid
+     * @param index the position in the {@link Leaderboard}
+     * @return a {@link PlayerFromLeaderboard}, if the index was valid
      */
     public PlayerFromLeaderboard getPlayerFromLeaderboard(int index) {
         return leaderboard.getPlayer(index);
     }
 
     /**
-     * Gives the count of the records in the leader board.
+     * Gives the count of the records in the {@link Leaderboard}.
      *
      * @return the size of the leader board
      */
@@ -76,7 +88,7 @@ public class Game {
     /**
      * Steps the player into a specific direction.
      *
-     * @param direction is where the player steps
+     * @param direction the {@link Direction} of the step
      */
     public void step(Direction direction) {
         int distance = getField(getCurrentRow(), getCurrentCol());
@@ -115,7 +127,7 @@ public class Game {
     }
 
     /**
-     * Saves the current game state.
+     * Saves the current {@link GameState}.
      */
     public void saveGame() {
         gameState.saveState();
@@ -131,17 +143,20 @@ public class Game {
     }
 
     /**
-     * Loads a specific game state.
+     * Loads a specific {@link GameState}.
      *
      * @param row the row of the player's position
      * @param col the column of the player's position
-     * @param notAllowedDirection the direction of the previous field
+     * @param notAllowedDirection the {@link Direction} of the previous field
      * @param steps the steps the player did so far
      */
     public void LoadSate(int row, int col, Direction notAllowedDirection, int steps) {
         gameState.LoadState(row, col, notAllowedDirection, steps);
     }
 
+    /**
+     * The constructor of the {@link Game}, creates a new {@link Table}, {@link GameState}, {@link Leaderboard}.
+     */
     public Game() {
         table = new Table();
         gameState = new GameState();

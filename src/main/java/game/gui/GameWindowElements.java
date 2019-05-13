@@ -12,20 +12,20 @@ import javafx.scene.text.Text;
 import static game.gui.GraphicElements.fieldRectangle;
 
 /**
- * The main elements of the {@link game.gui.GameWindow}.
+ * The main elements of the {@link GameWindow}.
  */
 public class GameWindowElements {
 
     /**
-     * The fields that contains the score
+     * The fields that contains the score.
      */
     private static Rectangle[][] rectangles;
 
     /**
-     * Creates the menu for the {@link game.gui.GameWindow}.
+     * Creates the menu for the {@link GameWindow}.
      *
      * @param game the game mechanics
-     * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
+     * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
     public static void CreateMenu(Game game, StackPane stackPane) {
         MenuBar menuBar = new MenuBar();
@@ -62,10 +62,10 @@ public class GameWindowElements {
     }
 
     /**
-     * Creates the fields for the {@link game.gui.GameWindow}.
+     * Creates the fields for the {@link GameWindow}.
      *
      * @param game the game mechanics
-     * @param stackPane the {@code StackPane} of the {@link game.gui.GameWindow}
+     * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
     public static void CreateFields(Game game, StackPane stackPane) {
         Text[][] fields = new Text[8][8];
@@ -92,11 +92,11 @@ public class GameWindowElements {
     }
 
     /**
-     * Changes a field in the {@link game.gui.GameWindow}.
+     * Changes a field in the {@link GameWindow}.
      *
      * @param row the row of the field
      * @param col the column of the field
-     * @param color the new color of the field
+     * @param color the new {@code Color} of the field
      */
     public static void ChangeRectangleColor(int row, int col, Color color) {
         rectangles[row][col].setFill(color);

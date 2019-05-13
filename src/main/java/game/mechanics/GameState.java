@@ -11,22 +11,40 @@ import java.io.IOException;
  */
 @Slf4j
 class GameState {
+    /**
+     * The current position of the player.
+     */
     private int[] index;
+    /**
+     * The player cannot step into this {@link Direction}.
+     */
     private Direction unallowedDirection;
+    /**
+     * The name of the player.
+     */
     private String name;
+    /**
+     * The count of steps the player did so far.
+     */
     private int steps;
+    /**
+     * {@link FileOperations} contains json file operations.
+     */
     private FileOperations fileOperations;
 
     /**
      * Logs the player's current and position and the direction the player stepped.
      *
-     * @param direction the direction of the player's step
+     * @param direction the {@link Direction} of the player's step
      */
     private void logStep(Direction direction) {
         log.info("PlayerFromLeaderboard's position: ({}, {})", index[0], index[1]);
         log.info("PlayerFromLeaderboard stepped to {}", direction);
     }
 
+    /**
+     * The constructor of {@link GameState}.
+     */
     GameState(){
         index = new int[2];
         unallowedDirection = Direction.LEFT;
@@ -78,7 +96,7 @@ class GameState {
      * Modifies the current row.
      *
      * @param distance the added score
-     * @param direction the direction of the step
+     * @param direction the {@link Direction} of the step
      */
     private void setRow(int distance, Direction direction){
         if (index[0] + distance < 8 && index[0] + distance >= 0) {
@@ -95,7 +113,7 @@ class GameState {
      * Modifies the current column.
      *
      * @param distance the added score
-     * @param direction the direction of the step
+     * @param direction the {@link Direction} of the step
      */
     private void setCol(int distance, Direction direction){
         if (index[1] + distance < 8 && index[1] + distance >= 0) {
@@ -111,7 +129,7 @@ class GameState {
     /**
      * Gives the direction of the previous field.
      *
-     * @return the opposite direction of the previous step
+     * @return the opposite {@link Direction} of the previous step
      */
     Direction getUnallowedDirection() {
         return unallowedDirection;
@@ -120,7 +138,7 @@ class GameState {
     /**
      * Updates the game state.
      *
-     * @param direction the direction of the step
+     * @param direction the {@link Direction} of the step
      * @param distance the length of the step
      */
     void updateState(Direction direction, int distance) {
@@ -223,7 +241,7 @@ class GameState {
      *
      * @param row the row of the player's position
      * @param col the column of the player's position
-     * @param notAllowedDirection the direction of the previous field
+     * @param notAllowedDirection the {@link Direction} of the previous field
      * @param steps the steps the player did so far
      */
     void LoadState(int row, int col, Direction notAllowedDirection, int steps) {
