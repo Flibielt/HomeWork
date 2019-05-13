@@ -27,7 +27,7 @@ public class LeaderboardWindow {
         vBox.setSpacing(15);
         getLeaderboard(game, vBox);
 
-        leaderboardStage.setScene(new Scene(vBox, 200, 350));
+        leaderboardStage.setScene(new Scene(vBox, 250, 350));
         leaderboardStage.show();
     }
 
