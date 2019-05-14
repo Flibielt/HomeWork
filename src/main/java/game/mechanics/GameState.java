@@ -38,8 +38,12 @@ class GameState {
      * @param direction the {@link Direction} of the player's step
      */
     private void logStep(Direction direction) {
-        log.info("PlayerFromLeaderboard's position: ({}, {})", index[0], index[1]);
-        log.info("PlayerFromLeaderboard stepped to {}", direction);
+        log.info("Player stepped to {}", direction);
+        logPosition();
+    }
+
+    private void logPosition() {
+        log.info("Player's position: ({}, {})", index[0], index[1]);
     }
 
     /**
@@ -229,6 +233,7 @@ class GameState {
 
             jsonReader.endObject();
             jsonReader.close();
+            logPosition();
         } catch (Exception e) {
             loadDefaultGameState();
             log.error(e.toString());
@@ -278,5 +283,6 @@ class GameState {
         index[0] = index[1] = 0;
         unallowedDirection = Direction.LEFT;
         steps = 0;
+        log.info("Player's position: ({}, {})", index[0], index[1]);
     }
 }

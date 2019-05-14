@@ -42,10 +42,10 @@ class Table {
             while (jsonReader.peek() != JsonToken.END_DOCUMENT) {
                 if (jsonReader.peek() == JsonToken.END_ARRAY) {
                     jsonReader.endArray();
-                    row++;
                     if (row <= table[0].length && col < table[1].length) {
                         throw new IllegalArgumentException("Not enough elements in the " + row + ". row");
                     }
+                    row++;
                     col = 0;
 
                 } else if (jsonReader.peek() == JsonToken.BEGIN_ARRAY) {
