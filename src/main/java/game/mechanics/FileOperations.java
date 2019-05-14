@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStream;
-import java.net.URLDecoder;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,8 +29,9 @@ public class FileOperations {
      */
     FileOperations() {
         try {
-            destination = URLDecoder.decode(getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
-            destination = destination.substring(0, destination.lastIndexOf("/")) + File.separator + "game" + File.separator;
+            Path workingDirectory = FileSystems.getDefault().getPath("").toAbsolutePath();
+            destination = workingDirectory.toString() + File.separator + "data" + File.separator;
+            log.info("Working directory: {}", workingDirectory);
         } catch (Exception e) {
             log.error(e.toString());
         }
