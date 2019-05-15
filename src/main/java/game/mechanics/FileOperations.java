@@ -80,6 +80,11 @@ public class FileOperations {
      * @return a {@link JsonWriter} to the file
      */
     public JsonWriter CreateJsonWriter(String fileName) {
+        File directory = new File(destination);
+        if (directory.mkdir()) {
+            log.info("Directory {} created", destination);
+        }
+
         try {
             if (destination.substring(destination.length() - 1).equals(File.separator)) {
                 destination = destination.concat(fileName);
