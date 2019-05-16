@@ -53,7 +53,7 @@ class GameState {
         index = new int[2];
         unallowedDirection = Direction.LEFT;
         steps = 0;
-        fileOperations = new FileOperations();
+        fileOperations = FileOperations.getInstance();
     }
 
     /**

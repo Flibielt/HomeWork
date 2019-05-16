@@ -27,7 +27,7 @@ class Leaderboard {
      */
     Leaderboard() {
         leaderboard = new LinkedList<PlayerFromLeaderboard>();
-        fileOperations = new FileOperations();
+        fileOperations = FileOperations.getInstance();
         upload();
     }
 

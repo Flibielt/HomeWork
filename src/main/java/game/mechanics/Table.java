@@ -24,7 +24,7 @@ class Table {
      */
     Table(){
         table = new int[8][8];
-        fileOperations = new FileOperations();
+        fileOperations = FileOperations.getInstance();
         uploadTable();
     }
 
