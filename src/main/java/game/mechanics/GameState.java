@@ -205,7 +205,7 @@ class GameState {
     void LoadState() {
         try {
 
-            JsonReader jsonReader = fileOperations.CopyFileFromJar("state.json");
+            JsonReader jsonReader = fileOperations.CreateJsonReader("state.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();

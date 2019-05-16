@@ -39,7 +39,7 @@ class Leaderboard {
         int steps = 0;
         try {
 
-            JsonReader jsonReader = fileOperations.CopyFileFromJar("leaderboard.json");
+            JsonReader jsonReader = fileOperations.CreateJsonReader("leaderboard.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();

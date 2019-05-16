@@ -56,7 +56,7 @@ class FileOperations {
      * @param fileName the name of the file
      * @return a {@code JsonReader} to the file
      */
-    JsonReader CopyFileFromJar(String fileName) {
+    JsonReader CreateJsonReader(String fileName) {
         try {
             checkDirectory();
             return new JsonReader(new FileReader(createFilePath(fileName)));
