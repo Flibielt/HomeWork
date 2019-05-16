@@ -42,6 +42,9 @@ class GameState {
         logPosition();
     }
 
+    /**
+     * Logs the position of the player.
+     */
     private void logPosition() {
         log.info("Player's position: ({}, {})", index[0], index[1]);
     }
@@ -109,7 +112,7 @@ class GameState {
             steps++;
             logStep(direction);
         } else {
-            throw new IllegalArgumentException("You cannot step there");
+            throw new IllegalArgumentException("The player cannot step there");
         }
     }
 
@@ -126,7 +129,7 @@ class GameState {
             steps++;
             logStep(direction);
         } else {
-            throw new IllegalArgumentException("You cannot step there");
+            throw new IllegalArgumentException("The player cannot step there");
         }
     }
 

@@ -25,7 +25,7 @@ class FileOperations {
      */
     private String destination;
     /**
-     * Single instance of the {@code FileOperations} class
+     * Single instance of the {@code FileOperations} class.
      */
     private static FileOperations fileOperationsInstance = null;
 
@@ -43,6 +43,10 @@ class FileOperations {
         }
     }
 
+    /**
+     * Gives a reference to the {@code FileOperations} singleton class.
+     * @return
+     */
     static FileOperations getInstance() {
         if (fileOperationsInstance == null) {
             fileOperationsInstance = new FileOperations();
