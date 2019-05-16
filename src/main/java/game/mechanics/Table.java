@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 class Table {
 
     /**
-     * The game table in {@code in} array.
+     * The game table in {@code int} array.
      */
     private int[][] table;
     /**

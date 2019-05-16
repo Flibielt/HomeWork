@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Creates {@link JsonWriter} and {@link JsonReader} to the given file.
+ * Creates {@code JsonWriter} and {@code JsonReader} to the given file.
  */
 @Slf4j
 public class FileOperations {
@@ -25,7 +25,7 @@ public class FileOperations {
     private String destination;
 
     /**
-     * The constructor of the {@link FileOperations}, gets the destination of the current folder.
+     * The constructor of the {@code FileOperations}, gets the destination of the current folder.
      */
     FileOperations() {
         try {
@@ -41,7 +41,7 @@ public class FileOperations {
      * Creates a file if it was not created yet.
      *
      * @param fileName the name of the file
-     * @return a {@link JsonReader} to the file
+     * @return a {@code JsonReader} to the file
      */
     public JsonReader CopyFileFromJar(String fileName) {
         try {
@@ -77,7 +77,7 @@ public class FileOperations {
      * Creates if it was not created yet.
      *
      * @param fileName the name of the file
-     * @return a {@link JsonWriter} to the file
+     * @return a {@code JsonWriter} to the file
      */
     public JsonWriter CreateJsonWriter(String fileName) {
         File directory = new File(destination);
