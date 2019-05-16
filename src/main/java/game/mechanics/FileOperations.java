@@ -45,7 +45,7 @@ class FileOperations {
 
     /**
      * Gives a reference to the {@code FileOperations} singleton class.
-     * @return
+     * @return a reference to the {@code FileOperations}
      */
     static FileOperations getInstance() {
         if (fileOperationsInstance == null) {
