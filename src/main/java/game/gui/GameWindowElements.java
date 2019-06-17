@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-import static game.gui.GraphicElements.fieldRectangle;
+import static game.gui.GraphicElements.createFieldRectangle;
 
 /**
  * The main elements of the {@link GameWindow}.
@@ -27,7 +27,7 @@ public class GameWindowElements {
      * @param game access to the {@link Game} mechanics
      * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
-    public static void CreateMenu(Game game, StackPane stackPane) {
+    public static void createMenu(Game game, StackPane stackPane) {
         MenuBar menuBar = new MenuBar();
 
         Menu menu1 = new javafx.scene.control.Menu("Game");
@@ -49,12 +49,12 @@ public class GameWindowElements {
 
         exitGame.setOnAction(e -> {
             e.consume();
-            ExtraWindows.ExitWindow(game);
+            ExtraWindows.createExitWindow(game);
         });
 
         help.setOnAction(e -> {
             e.consume();
-            ExtraWindows.HelpWindow();
+            ExtraWindows.createHelpWindow();
         });
 
         stackPane.getChildren().add(menuBar);
@@ -67,7 +67,7 @@ public class GameWindowElements {
      * @param game access to the {@link Game} mechanics
      * @param stackPane the {@code StackPane} of the {@link GameWindow}
      */
-    public static void CreateFields(Game game, StackPane stackPane) {
+    public static void createFields(Game game, StackPane stackPane) {
         Text[][] fields = new Text[8][8];
         rectangles = new Rectangle[8][8];
 
@@ -76,7 +76,7 @@ public class GameWindowElements {
                 fields[i][j] = new Text();
                 fields[i][j].setText(String.valueOf(game.getField(i,j)));
 
-                rectangles[i][j] = fieldRectangle();
+                rectangles[i][j] = createFieldRectangle();
 
                 stackPane.getChildren().addAll(fields[i][j], rectangles[i][j]);
 
@@ -98,7 +98,7 @@ public class GameWindowElements {
      * @param col the column of the field
      * @param color the new {@code Color} of the field
      */
-    public static void ChangeRectangleColor(int row, int col, Color color) {
+    public static void changeRectangleColor(int row, int col, Color color) {
         rectangles[row][col].setFill(color);
     }
 }

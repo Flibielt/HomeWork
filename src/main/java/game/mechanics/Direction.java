@@ -27,7 +27,7 @@ public enum Direction {
      * @param direction the direction to be reversed
      * @return the opposite of the given direction
      */
-    public static Direction GetOppositeDirection(Direction direction) {
+    public static Direction getOppositeDirection(Direction direction) {
         if (direction == LEFT) {
             return RIGHT;
         } else if (direction == RIGHT) {
@@ -46,7 +46,7 @@ public enum Direction {
      * @param direction a possible direction in {@link String}
      * @return a {@link Direction} if the argument was a valid direction
      */
-    public static Direction StringToEnum(String direction) {
+    public static Direction stringToEnum(String direction) {
         switch (direction.toUpperCase()) {
             case "LEFT":
                 return LEFT;

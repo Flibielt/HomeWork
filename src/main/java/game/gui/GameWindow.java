@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import static game.gui.GraphicElements.borderedHBox;
+import static game.gui.GraphicElements.createBorderedHBox;
 import static game.gui.GraphicElements.transitionInitialize;
 
 /**
@@ -29,14 +29,14 @@ public class GameWindow {
      * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@code Stage}
      */
-    public static void ShowGameWindow(Game game, Stage primaryStage) {
+    public static void showGameWindow(Game game, Stage primaryStage) {
         primaryStage.setTitle("Game");
         StackPane stackPane = new StackPane();
-        GameWindowElements.CreateMenu(game, stackPane);
-        GameWindowElements.CreateFields(game, stackPane);
+        GameWindowElements.createMenu(game, stackPane);
+        GameWindowElements.createFields(game, stackPane);
 
-        HBox illegalStepHBox = borderedHBox("ILLEGAL STEP");
-        HBox winHBox = borderedHBox("YOU WIN!");
+        HBox illegalStepHBox = createBorderedHBox("ILLEGAL STEP");
+        HBox winHBox = createBorderedHBox("YOU WIN!");
         illegalStepHBox.setVisible(false);
         illegalStepHBox.toFront();
         winHBox.setVisible(false);
@@ -48,7 +48,7 @@ public class GameWindow {
             @Override
             public void handle(WindowEvent windowEvent) {
                 windowEvent.consume();
-                ExtraWindows.ExitWindow(game);
+                ExtraWindows.createExitWindow(game);
             }
         });
 
@@ -58,7 +58,7 @@ public class GameWindow {
         steps.setTranslateX(-210);
         steps.setTranslateY(240);
 
-        GameWindowElements.ChangeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.CORNFLOWERBLUE);
+        GameWindowElements.changeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.CORNFLOWERBLUE);
 
         FadeTransition fadeOut = transitionInitialize(1.0, 0.0);
         fadeOut.setNode(illegalStepHBox);
@@ -69,7 +69,7 @@ public class GameWindow {
             public void handle(KeyEvent keyEvent) {
                 previous[0] = game.getCurrentRow();
                 previous[1] = game.getCurrentCol();
-                GameWindowElements.ChangeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.TRANSPARENT);
+                GameWindowElements.changeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.TRANSPARENT);
                 boolean stepKeyPressed = true;
                 if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
                     game.step(Direction.RIGHT);
@@ -83,14 +83,14 @@ public class GameWindow {
                     stepKeyPressed = false;
                 }
 
-                GameWindowElements.ChangeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.CORNFLOWERBLUE);
+                GameWindowElements.changeRectangleColor(game.getCurrentRow(), game.getCurrentCol(), Color.CORNFLOWERBLUE);
                 if (stepKeyPressed) {
                     if (previous[0] == game.getCurrentRow() && previous[1] == game.getCurrentCol()) {
                         illegalStepHBox.setVisible(true);
                         fadeOut.playFromStart();
                     }
                 }
-                if (game.IsGoal()) {
+                if (game.isGoal()) {
                     game.updateLeaderboard();
                     LeaderboardWindow.showLeaderboard(game);
                     primaryStage.close();

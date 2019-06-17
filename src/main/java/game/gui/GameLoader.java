@@ -25,7 +25,7 @@ public class GameLoader {
      * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@code Stage}
      */
-    public void LoadNewGameCreator(Game game, Stage primaryStage) {
+    public void loadNewGameCreator(Game game, Stage primaryStage) {
         primaryStage.setTitle("Create new game");
         HBox hBox = new HBox();
         Text nameText = new Text("Name:");
@@ -44,7 +44,7 @@ public class GameLoader {
                         game.setName(playerName.getText());
                         log.info("New player: {}", playerName.getText());
                         log.info("New game created");
-                        GameWindow.ShowGameWindow(game, primaryStage);
+                        GameWindow.showGameWindow(game, primaryStage);
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class GameLoader {
      * @param game access to the {@link Game} mechanics
      * @param primaryStage the previous {@code Stage}
      */
-    public void LoadPreviousGame(Game game, Stage primaryStage) {
-        GameWindow.ShowGameWindow(game, primaryStage);
+    public void loadPreviousGame(Game game, Stage primaryStage) {
+        GameWindow.showGameWindow(game, primaryStage);
     }
 }

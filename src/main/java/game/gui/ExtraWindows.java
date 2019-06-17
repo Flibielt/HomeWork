@@ -22,7 +22,7 @@ public class ExtraWindows {
     /**
      * Creates a new window, which describes the game's rules.
      */
-    public static void HelpWindow() {
+    public static void createHelpWindow() {
         Stage helpStage = new Stage();
         helpStage.setTitle("Help");
         VBox vBox = new VBox();
@@ -51,7 +51,7 @@ public class ExtraWindows {
      *
      * @param game access to the {@link Game} mechanics
      */
-    public static void ExitWindow(Game game) {
+    public static void createExitWindow(Game game) {
         HBox hBox = new HBox();
         Button exitButton = new Button("Exit");
         Button saveExitButton = new Button("Save and exit");

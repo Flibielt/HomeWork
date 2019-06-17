@@ -24,7 +24,7 @@ class GameStateTest {
 
     @Test
     void testUpdateState() {
-        gameState.LoadState(0,0,Direction.LEFT, 0);
+        gameState.loadState(0,0,Direction.LEFT, 0);
         assertThrows(IllegalArgumentException.class, () -> gameState.updateState(Direction.LEFT, 3));
         assertNoChange(0, 0, Direction.LEFT, 0);
         assertThrows(IllegalArgumentException.class, () -> gameState.updateState(Direction.UP, 3));
@@ -39,7 +39,7 @@ class GameStateTest {
         assertEquals(3, gameState.getCol());
         assertEquals(0, gameState.getRow());
         assertEquals(1, gameState.getSteps());
-        gameState.LoadState(0, 0, Direction.LEFT, 0);
+        gameState.loadState(0, 0, Direction.LEFT, 0);
         gameState.updateState(Direction.DOWN, 3);
         assertEquals(Direction.UP, gameState.getUnallowedDirection());
         assertEquals(0, gameState.getCol());

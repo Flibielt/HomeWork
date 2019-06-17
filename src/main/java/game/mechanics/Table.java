@@ -34,7 +34,7 @@ class Table {
     private void uploadTable(){
         try {
 
-            JsonReader jsonReader = fileOperations.CreateJsonReader("table.json");
+            JsonReader jsonReader = fileOperations.createJsonReader("table.json");
 
             jsonReader.beginObject();
             int row = 0;

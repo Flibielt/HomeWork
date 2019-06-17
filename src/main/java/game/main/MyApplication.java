@@ -51,20 +51,20 @@ public class MyApplication extends Application {
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                gameLoader.LoadNewGameCreator(game, primaryStage);
+                gameLoader.loadNewGameCreator(game, primaryStage);
             }
         });
 
         loadGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                game.LoadGame();
+                game.loadGame();
                 if (game.getName().equals("")) {
                     log.warn("There is no saved game to be loaded");
-                    gameLoader.LoadNewGameCreator(game, primaryStage);
+                    gameLoader.loadNewGameCreator(game, primaryStage);
                 } else {
                     log.info("Load saved game");
-                    gameLoader.LoadPreviousGame(game, primaryStage);
+                    gameLoader.loadPreviousGame(game, primaryStage);
                 }
             }
         });

@@ -108,7 +108,7 @@ class GameState {
     private void setRow(int distance, Direction direction){
         if (index[0] + distance < 8 && index[0] + distance >= 0) {
             index[0] += distance;
-            unallowedDirection = Direction.GetOppositeDirection(direction);
+            unallowedDirection = Direction.getOppositeDirection(direction);
             steps++;
             logStep(direction);
         } else {
@@ -125,7 +125,7 @@ class GameState {
     private void setCol(int distance, Direction direction){
         if (index[1] + distance < 8 && index[1] + distance >= 0) {
             index[1] += distance;
-            unallowedDirection = Direction.GetOppositeDirection(direction);
+            unallowedDirection = Direction.getOppositeDirection(direction);
             steps++;
             logStep(direction);
         } else {
@@ -171,7 +171,7 @@ class GameState {
     void saveState() {
         try {
 
-            JsonWriter jsonWriter = fileOperations.CreateJsonWriter("state.json");
+            JsonWriter jsonWriter = fileOperations.createJsonWriter("state.json");
 
             jsonWriter.beginObject();
 
@@ -205,10 +205,10 @@ class GameState {
     /**
      * Loads the game state of a previous game from a file.
      */
-    void LoadState() {
+    void loadState() {
         try {
 
-            JsonReader jsonReader = fileOperations.CreateJsonReader("state.json");
+            JsonReader jsonReader = fileOperations.createJsonReader("state.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();
@@ -223,7 +223,7 @@ class GameState {
 
             jsonReader.nextName();
 
-            unallowedDirection = Direction.StringToEnum(jsonReader.nextString());
+            unallowedDirection = Direction.stringToEnum(jsonReader.nextString());
 
             jsonReader.nextName();
             name = jsonReader.nextString();
@@ -255,7 +255,7 @@ class GameState {
      * @param notAllowedDirection the {@link Direction} of the previous field
      * @param steps the steps the player did so far
      */
-    void LoadState(int row, int col, Direction notAllowedDirection, int steps) {
+    void loadState(int row, int col, Direction notAllowedDirection, int steps) {
         try {
             if (row > 7 || row < 0) {
                 loadDefaultGameState();

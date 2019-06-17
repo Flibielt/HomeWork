@@ -20,7 +20,7 @@ public class GraphicElements {
      * @param text the value of the {@code Text}
      * @return the {@code HBox}
      */
-    public static HBox borderedHBox(String text) {
+    public static HBox createBorderedHBox(String text) {
         Text text1 = new Text();
         text1.setText(text);
         text1.setFont(Font.font("verdana", FontWeight.BOLD, 20));
@@ -41,7 +41,7 @@ public class GraphicElements {
      *
      * @return {@code Rectangle} with border
      */
-    public static Rectangle fieldRectangle() {
+    public static Rectangle createFieldRectangle() {
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(50);
         rectangle.setHeight(50);

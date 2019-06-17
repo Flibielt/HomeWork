@@ -39,7 +39,7 @@ class Leaderboard {
         int steps = 0;
         try {
 
-            JsonReader jsonReader = fileOperations.CreateJsonReader("leaderboard.json");
+            JsonReader jsonReader = fileOperations.createJsonReader("leaderboard.json");
 
             jsonReader.beginObject();
             jsonReader.nextName();
@@ -105,7 +105,7 @@ class Leaderboard {
     void update() {
         try {
 
-            JsonWriter jsonWriter = fileOperations.CreateJsonWriter("leaderboard.json");
+            JsonWriter jsonWriter = fileOperations.createJsonWriter("leaderboard.json");
 
             jsonWriter.beginObject();
             jsonWriter.name("players");

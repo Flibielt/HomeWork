@@ -60,7 +60,7 @@ class FileOperations {
      * @param fileName the name of the file
      * @return a {@code JsonReader} to the file
      */
-    JsonReader CreateJsonReader(String fileName) {
+    JsonReader createJsonReader(String fileName) {
         try {
             checkDirectory();
             return new JsonReader(new FileReader(createFilePath(fileName)));
@@ -83,7 +83,7 @@ class FileOperations {
      * @param fileName the name of the file
      * @return a {@code JsonWriter} to the file
      */
-    JsonWriter CreateJsonWriter(String fileName) {
+    JsonWriter createJsonWriter(String fileName) {
         try {
             checkDirectory();
             return new JsonWriter(new FileWriter(createFilePath(fileName)));

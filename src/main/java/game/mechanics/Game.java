@@ -54,7 +54,7 @@ public class Game {
      *
      * @return {@code true} if the current field is 0, else {@code false}
      */
-    public boolean IsGoal(){
+    public boolean isGoal(){
         return getField(getCurrentRow(), getCurrentCol()) == 0;
     }
 
@@ -104,8 +104,8 @@ public class Game {
     /**
      * Loads a previous game.
      */
-    public void LoadGame() {
-        gameState.LoadState();
+    public void loadGame() {
+        gameState.loadState();
     }
 
     /**
@@ -150,8 +150,8 @@ public class Game {
      * @param notAllowedDirection the {@link Direction} of the previous field
      * @param steps the steps the player did so far
      */
-    public void LoadSate(int row, int col, Direction notAllowedDirection, int steps) {
-        gameState.LoadState(row, col, notAllowedDirection, steps);
+    public void loadSate(int row, int col, Direction notAllowedDirection, int steps) {
+        gameState.loadState(row, col, notAllowedDirection, steps);
     }
 
     /**
