@@ -1,5 +1,7 @@
 package game.mechanics;
 
+import lombok.Getter;
+
 /**
  * A player in the {@link Leaderboard}.
  */
@@ -8,10 +10,12 @@ public class PlayerFromLeaderboard {
     /**
      * The name of the player.
      */
+    @Getter
     private String name;
     /**
      * The count of steps the player did to reach the goal.
      */
+    @Getter
     private int steps;
 
     /**
@@ -23,24 +27,6 @@ public class PlayerFromLeaderboard {
     PlayerFromLeaderboard(String name, int steps) {
         this.name = name;
         this.steps = steps;
-    }
-
-    /**
-     * Returns the player's name.
-     *
-     * @return the player's name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Returns the count of the player's steps.
-     *
-     * @return the count of steps
-     */
-    public int getSteps() {
-        return steps;
     }
 
     @Override

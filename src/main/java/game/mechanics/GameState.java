@@ -2,6 +2,8 @@ package game.mechanics;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -14,18 +16,22 @@ class GameState {
     /**
      * The current position of the player.
      */
-    private int[] index;
+    private int[] position;
     /**
      * The player cannot step into this {@link Direction}.
      */
+    @Getter
     private Direction unallowedDirection;
     /**
      * The name of the player.
      */
+    @Getter
+    @Setter
     private String name;
     /**
      * The count of steps the player did so far.
      */
+    @Getter
     private int steps;
     /**
      * {@link FileOperations} contains json file operations.
@@ -46,14 +52,14 @@ class GameState {
      * Logs the position of the player.
      */
     private void logPosition() {
-        log.info("Player's position: ({}, {})", index[0], index[1]);
+        log.info("Player's position: ({}, {})", position[0], position[1]);
     }
 
     /**
      * The constructor of {@link GameState}.
      */
     GameState(){
-        index = new int[2];
+        position = new int[2];
         unallowedDirection = Direction.LEFT;
         steps = 0;
         fileOperations = FileOperations.getInstance();
@@ -64,40 +70,14 @@ class GameState {
      *
      * @return the current row
      */
-    int getRow(){return index[0];}
+    int getRow(){return position[0];}
 
     /**
      * Returns the current column.
      *
      * @return the current column
      */
-    int getCol(){return index[1];}
-
-    /**
-     * Sets the name of the current player.
-     *
-     * @param name the player's name
-     */
-    void setName(String name) {
-        this.name = name;
-    }
-    /**
-     * Gives the name of the current player.
-     *
-     * @return the name of the current player
-     */
-    String getName() {
-        return name;
-    }
-
-    /**
-     * Gives the count of steps the player did so far.
-     *
-     * @return the count of steps
-     */
-    int getSteps() {
-        return steps;
-    }
+    int getCol(){return position[1];}
 
     /**
      * Modifies the current row.
@@ -106,8 +86,8 @@ class GameState {
      * @param direction the {@link Direction} of the step
      */
     private void setRow(int distance, Direction direction){
-        if (index[0] + distance < 8 && index[0] + distance >= 0) {
-            index[0] += distance;
+        if (position[0] + distance < 8 && position[0] + distance >= 0) {
+            position[0] += distance;
             unallowedDirection = Direction.getOppositeDirection(direction);
             steps++;
             logStep(direction);
@@ -123,23 +103,14 @@ class GameState {
      * @param direction the {@link Direction} of the step
      */
     private void setCol(int distance, Direction direction){
-        if (index[1] + distance < 8 && index[1] + distance >= 0) {
-            index[1] += distance;
+        if (position[1] + distance < 8 && position[1] + distance >= 0) {
+            position[1] += distance;
             unallowedDirection = Direction.getOppositeDirection(direction);
             steps++;
             logStep(direction);
         } else {
             throw new IllegalArgumentException("The player cannot step there");
         }
-    }
-
-    /**
-     * Gives the direction of the previous field.
-     *
-     * @return the opposite {@link Direction} of the previous step
-     */
-    Direction getUnallowedDirection() {
-        return unallowedDirection;
     }
 
     /**
@@ -175,9 +146,9 @@ class GameState {
 
             jsonWriter.beginObject();
 
-            jsonWriter.name("index");
+            jsonWriter.name("position");
             jsonWriter.beginArray();
-            for (int value : index) {
+            for (int value : position) {
                 jsonWriter.value(value);
             }
             jsonWriter.endArray();
@@ -214,8 +185,8 @@ class GameState {
             jsonReader.nextName();
             jsonReader.beginArray();
             for (int i = 0; i < 2; i++) {
-                index[i] = jsonReader.nextInt();
-                if (index[i] > 7 || index[i] < 0) {
+                position[i] = jsonReader.nextInt();
+                if (position[i] > 7 || position[i] < 0) {
                     throw new IllegalArgumentException();
                 }
             }
@@ -267,8 +238,8 @@ class GameState {
                 loadDefaultGameState();
                 throw new IllegalArgumentException();
             } else {
-                index[0] = row;
-                index[1] = col;
+                position[0] = row;
+                position[1] = col;
                 unallowedDirection = notAllowedDirection;
                 this.steps = steps;
                 log.info("The player's position is set to ({}, {}), not allowed direction: {}, steps: {}", row, col, notAllowedDirection, steps);
@@ -283,9 +254,9 @@ class GameState {
      */
     private void loadDefaultGameState() {
         name = "";
-        index[0] = index[1] = 0;
+        position[0] = position[1] = 0;
         unallowedDirection = Direction.LEFT;
         steps = 0;
-        log.info("Player's position: ({}, {})", index[0], index[1]);
+        log.info("Player's position: ({}, {})", position[0], position[1]);
     }
 }
