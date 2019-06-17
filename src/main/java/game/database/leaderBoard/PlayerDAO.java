@@ -5,9 +5,9 @@ import game.database.leaderBoard.model.Player;
 
 import java.util.List;
 
-public class PlayerDao extends GenericJpaDao<Player> {
+public class PlayerDAO extends GenericJpaDao<Player> {
 
-    public PlayerDao() {
+    public PlayerDAO() {
         super(Player.class);
     }
 
@@ -25,7 +25,7 @@ public class PlayerDao extends GenericJpaDao<Player> {
      * @param players the length of the new list
      * @return the first {@code players} length list
      */
-    public List<Player> getFirst(int players) {
+    List<Player> getFirst(int players) {
         int size = getAllElements().size();
         return getAllElements().subList(0, players > size ? size : players);
     }

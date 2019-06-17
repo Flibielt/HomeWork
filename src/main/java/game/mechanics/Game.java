@@ -1,5 +1,6 @@
 package game.mechanics;
 
+import game.database.leaderBoard.LeaderBoard;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,10 +16,6 @@ public class Game {
      * The current {@link GameState}.
      */
     private GameState gameState;
-    /**
-     * The game's {@link Leaderboard}.
-     */
-    private Leaderboard leaderboard;
 
     /**
      * Gives the score of the field.
@@ -56,33 +53,6 @@ public class Game {
      */
     public boolean isGoal(){
         return getField(getCurrentRow(), getCurrentCol()) == 0;
-    }
-
-    /**
-     * Puts the player to the {@link Leaderboard}.
-     */
-    public void updateLeaderboard() {
-        leaderboard.newPlayer(gameState.getName(), gameState.getSteps());
-        leaderboard.update();
-    }
-
-    /**
-     * Gives a {@link PlayerFromLeaderboard} from the {@link Leaderboard}.
-     *
-     * @param index the position in the {@link Leaderboard}
-     * @return a {@link PlayerFromLeaderboard}, if the index was valid
-     */
-    public PlayerFromLeaderboard getPlayerFromLeaderboard(int index) {
-        return leaderboard.getPlayer(index);
-    }
-
-    /**
-     * Gives the count of the records in the {@link Leaderboard}.
-     *
-     * @return the size of the leader board
-     */
-    public int getLeaderboardSize() {
-        return leaderboard.getLeaderboardSize();
     }
 
     /**
@@ -160,7 +130,6 @@ public class Game {
     public Game() {
         table = new Table();
         gameState = new GameState();
-        leaderboard = new Leaderboard();
     }
 
 }
