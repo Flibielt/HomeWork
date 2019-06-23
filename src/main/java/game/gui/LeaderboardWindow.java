@@ -1,7 +1,5 @@
 package game.gui;
 
-import game.database.leaderBoard.LeaderBoard;
-import game.database.leaderBoard.model.Player;
 import game.mechanics.Game;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -40,30 +38,20 @@ public class LeaderboardWindow {
      * @param vBox the {@code VBox} is the root of the current {@code Scene}
      */
     private static void getLeaderboard(Game game, VBox vBox) {
-
-        int size = LeaderBoard.getInstance().getFirst(9).size();
-
-        if (size == 0) {
-            HBox hBox = new HBox();
-            hBox.setAlignment(Pos.CENTER);
-            hBox.setSpacing(5);
-            Text emptyLeaderboard = new Text("The leaderboard is empty");
-            hBox.getChildren().add(emptyLeaderboard);
-            vBox.getChildren().add(hBox);
-        } else {
-            int index = 1;
-            for (Player player : LeaderBoard.getInstance().getFirst(9)) {
-                HBox hBox = new HBox();
-                hBox.setAlignment(Pos.CENTER);
-                hBox.setSpacing(5);
-                Text position = new Text(index + ". ");
-                Text playerName = new Text(player.getName());
-                Text playerScore = new Text(Integer.toString(player.getSteps()));
-                hBox.getChildren().addAll(position, playerName, playerScore);
-                vBox.getChildren().add(hBox);
-                index++;
-            }
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(5);
+        for (int i = 0; i < game.getLeaderboardSize(); i++) {
+            Text position = new Text(i + 1 + ". ");
+            Text playerName = new Text(game.getPlayerFromLeaderboard(i).getName());
+            Text playerScore = new Text(Integer.toString(game.getPlayerFromLeaderboard(i).getSteps()));
+            hBox.getChildren().addAll(position, playerName, playerScore);
         }
 
+        if (game.getLeaderboardSize() == 0) {
+            Text emptyLeaderboard = new Text("The leaderboard is empty");
+            hBox.getChildren().add(emptyLeaderboard);
+        }
+        vBox.getChildren().add(hBox);
     }
 }
