@@ -56,13 +56,6 @@ public class Game {
     }
 
     /**
-     * Puts the player into the leader board
-     */
-    public void updateLeaderboard() {
-        LeaderBoard.getInstance().newPlayer(gameState.getName(), gameState.getSteps());
-    }
-
-    /**
      * Steps the player into a specific direction.
      *
      * @param direction the {@link Direction} of the step
@@ -132,7 +125,7 @@ public class Game {
     }
 
     /**
-     * The constructor of the {@link Game}, creates a new {@link Table}, {@link GameState}.
+     * The constructor of the {@link Game}, creates a new {@link Table}, {@link GameState}, {@link Leaderboard}.
      */
     public Game() {
         table = new Table();
